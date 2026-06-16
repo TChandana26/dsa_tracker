@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Centered Form</title>
+  <style>
+    body {
+      margin: 0;
+      height: 90vh;
+      /* full viewport height */
+      display: grid;
+      justify-content: center;
+      /* horizontal center */
+      align-items: center;
+      /* vertical center */
+      background-color: #985dfc;
+    }
+
+    .form-container {
+      background: rgb(249, 249, 251);
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(240, 237, 237, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      margin-right: 10px;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-right: 5px;
+    }
+
+    button {
+      margin-top: 15px;
+      width: 100%;
+      padding: 10px;
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    h2 {
+      padding: 5px;
+    }
+
+    a {
+      color: #0c0d0d;
+    }
+
+    h1 {
+      font-size: 50px;
+      align-items: center;
+      align-content: center;
+      font-style: italic;
+      font-size: 3pc;
+      color: #020258;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <h1><i>"Code with Me"</i></h1>
+  <div class="form-container">
+    <form method="POST">
+      <h2>Login</h2>
+      <label>Username:</label>
+      <input type="text" placeholder="Enter your full name" required>
+
+      <label>Password:</label>
+      <input type="password" placeholder="Enter valid Password" required>
+
+      <button type="submit">Submit</button>
+      New User: <a href="http://127.0.0.1:5000/register"><i>register</i></a>
+    </form>
+  </div>
+</body>
+
+</html>
