@@ -76,16 +76,16 @@
 <body>
   <h1><i>"Code with Me"</i></h1>
   <div class="form-container">
-    <form method="POST">
+    <form method="POST" action="/user/login">
       <h2>Login</h2>
       <label>Username:</label>
-      <input type="text" placeholder="Enter your full name" required>
+      <input type="text" name="username" placeholder="Enter your full name" required>
 
       <label>Password:</label>
-      <input type="password" placeholder="Enter valid Password" required>
+      <input type="password" name="password"   placeholder="Enter valid Password" required>
 
       <button type="submit">Submit</button>
-      New User: <a href="http://127.0.0.1:5000/register"><i>register</i></a>
+      New User: <a href="/user/register"><i>register</i></a>
     </form>
   </div>
 </body>
