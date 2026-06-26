@@ -19,7 +19,8 @@ def base():
 
 @app.route('/dashboard')
 def dashboard():
-   username = 'Guest'
+   print("SESSION DATA:", session)
+   username = session.get('user')
    return render_template('dashboard.html',username=username) 
 
 

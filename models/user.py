@@ -16,7 +16,6 @@ def login():
         user = user_col.find_one({'username' : username})
         if user and check_password_hash(user['password'],password):
             session['user'] = username
-            print(username,password)
             return redirect(url_for('dashboard'))
         else:
             return "Invalid Details"
