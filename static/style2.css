@@ -36,7 +36,7 @@ h2 {
     min-width: 220px;
     background: #ffffff;
     border-radius: 12px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease;
 }
@@ -54,7 +54,7 @@ h2 {
 .card h2 {
     margin-top: 10px;
     font-size: 32px;
-    color: #2563eb;
+    color: #505153;
 }
 
 /* Buttons */
@@ -153,7 +153,7 @@ a:hover {
     }
 }
 h1{
-    background: linear-gradient(#f8f8fc, #9293f7);
+    background: linear-gradient(#f8f8fc, #a5a5a5);
     height: 10vh;                  /* full viewport height */
     display: flex;                  /* enable flexbox */
     flex-direction: column;         /* stack title + form vertically */

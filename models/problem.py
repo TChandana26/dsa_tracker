@@ -1,5 +1,6 @@
 from database.database import problem_col
 from flask import Blueprint, render_template, request, redirect, url_for
+from bson.objectid import ObjectId
 
 # Blueprint
 problems_bp = Blueprint(
@@ -16,13 +17,16 @@ def add_problem():
         title = request.form['title']
         platform = request.form['platform']
         difficulty = request.form['difficulty']
-
+        problem_link = request.form['problem_link']
+        notes = request.form['notes']
+        print(request.form)
         problem_col.insert_one({
             'title': title,
             'platform': platform,
-            'difficulty': difficulty
+            'difficulty': difficulty,
+            'problem_link' : problem_link,
+            'notes':notes
         })
-
         return redirect(url_for('problem.view_problem'))
 
     return render_template('problem.html')
@@ -38,4 +42,8 @@ def view_problem():
         'view_problem.html',
         problems=problems
     )
+
+
+
+
 

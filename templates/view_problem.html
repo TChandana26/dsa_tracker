@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Problems</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+</head>
+
+<body>
+    <form method="GET" action="{{ url_for('problem.view_problem') }}">
+
+    <div class="container">
+
+        <h1>📚 DSA Problem Tracker</h1>
+
+        <a href="{{ url_for('dashboard') }}" class="back-btn">
+            ← Back to Dashboard
+        </a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Platform</th>
+                    <th>Difficulty</th>
+                    <th>Link</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for problem in problems %}
+                <tr>
+                    <td>{{ problem['title'] }}</td>
+                    <td>{{ problem['platform'] }}</td>
+                    <td>
+                        <span class=" 
+                        {% if problem['difficulty'] == 'Easy' %}
+                         easy 
+                        {% elif problem['difficulty'] == 'Medium' %} 
+                         medium 
+                        {% else %} 
+                         hard 
+                        {% endif %} ">
+                            {{ problem['difficulty'] }} </span>
+                    </td>
+                    <td>
+                        <a href="{{ problem['problem_link'] }}" target="_blank">
+                            {{ problem['problem_link'] }}
+                        </a>
+                    </td>
+
+                    <td>
+                        <a href="{{ url_for('problem.notes', title=problem['title']) }}" class="notes-btn">
+                            📒 Notes
+                        </a>
+                    </td>
+                </tr>
+
+
+                {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+    </form>
+
+
+</body>
+
+</html>
