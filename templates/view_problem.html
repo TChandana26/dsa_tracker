@@ -5,69 +5,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Problems</title>
+
     <link rel="stylesheet" href="{{ url_for('static', filename='view.css') }}">
+
+    <style>
+        .notes-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .notes-btn:hover {
+            background-color: #45a049;
+        }
+
+        .notes-box {
+            display: none;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background: #f8f8f8;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            max-width: 300px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <form method="GET" action="{{ url_for('problem.view_problem') }}">
 
-    <div class="container">
+<div class="container">
 
-        <h1>📚 DSA Problem Tracker</h1>
+    <h1>📚 DSA Problem Tracker</h1>
 
-        <a href="{{ url_for('dashboard') }}" class="back-btn">
-            ← Back to Dashboard
-        </a>
+    <a href="/dashboard" class="back-btn">
+        ← Back to Dashboard
+    </a>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Platform</th>
-                    <th>Difficulty</th>
-                    <th>Link</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
+    <table>
 
-            <tbody>
-                {% for problem in problems %}
-                <tr>
-                    <td>{{ problem['title'] }}</td>
-                    <td>{{ problem['platform'] }}</td>
-                    <td>
-                        <span class=" 
-                        {% if problem['difficulty'] == 'Easy' %}
-                         easy 
-                        {% elif problem['difficulty'] == 'Medium' %} 
-                         medium 
-                        {% else %} 
-                         hard 
-                        {% endif %} ">
-                            {{ problem['difficulty'] }} </span>
-                    </td>
-                    <td>
-                        <a href="{{ problem['problem_link'] }}" target="_blank">
-                            {{ problem['problem_link'] }}
-                        </a>
-                    </td>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Platform</th>
+                <th>Difficulty</th>
+                <th>Link</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
 
-                    <td>
-                        <a href="{{ url_for('problem.notes', title=problem['title']) }}" class="notes-btn">
-                            📒 Notes
-                        </a>
-                    </td>
-                </tr>
+        <tbody>
 
+            {% for problem in problems %}
 
-                {% endfor %}
-            </tbody>
-        </table>
+            <tr>
 
-    </div>
-    </form>
+                <td>{{ problem['title'] }}</td>
 
+                <td>{{ problem['platform'] }}</td>
+
+                <td>
+                    <span class="
+                    {% if problem['difficulty']=='Easy' %}
+                        easy
+                    {% elif problem['difficulty']=='Medium' %}
+                        medium
+                    {% else %}
+                        hard
+                    {% endif %}
+                    ">
+                        {{ problem['difficulty'] }}
+                    </span>
+                </td>
+
+                <td>
+                    <a href="{{ problem['problem_link'] }}" target="_blank">
+                        Solve
+                    </a>
+                </td>
+
+                <td>
+
+                    <button
+                        type="button"
+                        class="notes-btn"
+                        onclick="toggleNotes('{{ loop.index }}')">
+                        📝 Notes
+                    </button>
+
+                    <div
+                        id="notes-{{ loop.index }}"
+                        class="notes-box">
+
+                        {% if problem.get('notes') %}
+                            {{ problem['notes'] }}
+                        {% else %}
+                            <h5>No notes available.</h5>
+                        {% endif %}
+
+                    </div>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script>
+
+function toggleNotes(id)
+{
+    let note = document.getElementById("notes-" + id);
+
+    if(note.style.display === "block")
+    {
+        note.style.display = "none";
+    }
+    else
+    {
+        note.style.display = "block";
+    }
+}
+
+</script>
 
 </body>
-
 </html>

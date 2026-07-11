@@ -2,315 +2,278 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>DSA Tracker</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DSA Tracker Dashboard</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='style2.css') }}">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
 </head>
 
 <body>
 
-    <div>
-        <h1>
-            {% block title %}DSA_TRACKER{% endblock %}
-        </h1>
-    </div>
+  <div class="dashboard">
 
-    {% block content %}
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+      <div class="logo">
+        <i class="fa-solid fa-code"></i>
+        <h2>DSA Tracker</h2>
+      </div>
+
+      <ul>
+
+        <li class="active">
+          <i class="fa-solid fa-house"></i>
+          Dashboard
+        </li>
+
+        <li>
+          <i class="fa-solid fa-book"></i>
+          Topics
+        </li>
+
+        <li>
+          <i class="fa-solid fa-list-check"></i>
+          Problems
+        </li>
+      </ul>
+
+      <div class="motivation">
+
+        <h3>🏆 Keep Going!</h3>
+
+        <p>
+          Consistency is the key to mastering Data Structures
+          and Algorithms.
+        </p>
+
+      </div>
+
+    </aside>
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main-content">
+
+      <!-- ================= TOPBAR ================= -->
+
+      
+
+      <!-- ================= WELCOME ================= -->
+       <header class="topbar">
+        
+      <section class="welcome">
+
+        <div>
+
+          <h1>
+
+            Welcome, {{ username }}
+            👋
+
+          </h1>
+
+          <p>
+
+            Track your coding journey and stay consistent.
+
+          </p>
+
+        </div>
+
+      </section>
+
+
+        <div class="right">
+
+         
+
+          <div class="profile">
+
+            <img src="https://ui-avatars.com/api/?name={{ username }}&background=2563eb&color=fff" alt="">
+
+            <span>{{ username }}</span>
+
+          </div>
+
+        
+
+
+      </div>
+      </header>
+
+      <!-- ================= CARDS ================= -->
+
+      <section class="cards">
+
+        <div class="card total">
+
+          <div>
+
+            <h4>Total Problems</h4>
+
+            <h2>{{ total }}</h2>
+
+          </div>
+
+          <i class="fa-solid fa-code"></i>
+
+        </div>
+
+        <div class="card easy">
+
+          <div>
+
+            <h4>Easy</h4>
+
+            <h2>{{ easy }}</h2>
+
+          </div>
+
+          <i class="fa-solid fa-face-smile"></i>
+
+        </div>
+
+        <div class="card medium">
+
+          <div>
+
+            <h4>Medium</h4>
+
+            <h2>{{ medium }}</h2>
+
+          </div>
+
+          <i class="fa-solid fa-bolt"></i>
+
+        </div>
+
+        <div class="card hard">
+
+          <div>
+
+            <h4>Hard</h4>
+
+            <h2>{{ hard }}</h2>
+
+          </div>
+
+          <i class="fa-solid fa-fire"></i>
+
+        </div>
+
+      </section>
+
+      <!-- ================= GRID ================= -->
+
+      <section class="grid">
+
+        <!-- LEFT -->
+
+        <div class="recent">
+
+          <div class="buttons">
+
+            <a href="/problem/add" class="btn primary">
+
+              + Add Problem
+
+            </a>
+
+            <a href="/problem/view" class="btn success">
+
+              View Problems
+
+            </a>
+
+          </div> <br><br>
+
+          <div class="section-title">
+
+            <h2>Recent Problems</h2>
+
+            <a href="/problem/view">
+
+              View All
+
+            </a>
+
+          </div>
+
+          <div class="table-container">
+
+            <table>
+
+              <thead>
+
+                <tr>
+
+                  <th>Problem</th>
+                  <th>Difficulty</th>
+                  <th>Platform</th>
+                  <th>Link</th>
+
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+
+                {% for problem in problems %}
+
+                <tr>
+
+                  <td>{{ problem['title'] }}</td>
+
+                  <td>{{ problem['difficulty'] }}</td>
+
+                  <td>{{ problem['platform'] }}</td>
+
+                  <td><a href="{{ problem['problem_link'] }}" target="_blank"> Link </a></td>
 
 
 
-    <div class="container mt-4">
+                </tr>
 
-        <!-- Welcome Section -->
-        <div class="row mb-4">
-            <div class="col">
-                <h2>Welcome, {{ username }} 👋</h2>
-                <p class="text-muted">
-                    Track your coding journey and stay consistent.
-                </p>
+                {% endfor %}
+
+              </tbody>
+
+            </table>
+
+          </div>
+
+          
+
+        </div>
+        <!-- ================= RIGHT PANEL ================= -->
+
+        <div class="right-panel">
+
+          <!-- Pie Chart -->
+
+          <div class="box">
+
+            <h3>Problems by Difficulty</h3>
+
+            <div class="chart">
+
+              <img src="{{ url_for('analytics.pie_chart') }}" alt="Pie Chart">
+
             </div>
-        </div>
 
-        <!-- Statistics Cards -->
-        <div class="row">
+          </div>
 
-            <div class="col-md-3 mb-3">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center" method="POST">
-                        <a href="{{ url_for('problem.add_problem') }}">
-                            <h5>+ Add Problems</h5>
-                            <h2>{{ add_problem }}</h2>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    </main>
 
-
-
-            <div class="col-md-3 mb-3">
-                <div class="card shadow-sm">
-                    <div class="card-body text-center" method="GET">
-                        <a href="{{ url_for('problem.view_problem') }}">
-                            <h5>View Problems</h5>
-                            <h2>{{ View_problems }}</h2>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <label><b><b><b>Data Structures and Algorithms</b></b></b></label><br><br>
-        <!-- 1. Mathematical Foundations & Complexity Analysis -->
-        <label>
-            <b>1. Mathematical Foundations & Complexity Analysis</b>
-        </label><br>
-
-
-        <label>
-            <input type="checkbox" name="Asymptotic Notation" value="Asymptotic Notation">
-            Asymptotic Notation
-        </label><br>
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Big-O Notation" value="Big-O Notation">
-                Big-O Notation (O)
-            </label><br>
-            <label>
-                <input type="checkbox" name="Omega Notation" value="Omega Notation">
-                Omega Notation (Ω)
-            </label><br>
-            <label>
-                <input type="checkbox" name="Theta Notation" value="Theta Notation">
-                Theta Notation (Θ)
-            </label><br>
-        </div>
-
-
-        <label>
-            <input type="checkbox" name="Time Complexity" value="Time Complexity">
-            Time Complexity
-        </label><br>
-        <label>
-            <input type="checkbox" name="Space Complexity" value="Space Complexity">
-            Space Complexity
-        </label><br>
-        <label>
-            <input type="checkbox" name="Bit Manipulation" value="Bit Manipulation">
-            Bit Manipulation
-        </label><br><br>
-
-
-
-        <!-- 2. Linear Data Structures -->
-        <label>
-            <b>2. Linear Data Structures</b>
-        </label><br>
-
-
-        <label><input type="checkbox" name="Arrays" value="Arrays"> Arrays</label><br>
-        <label><input type="checkbox" name="Strings" value="Strings"> Strings</label><br>
-
-
-        <label><input type="checkbox" name="Linked List" value="Linked List"> Linked List</label><br>
-
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Singly Linked List" value="Singly Linked List">
-                Singly Linked List
-            </label><br>
-            <label>
-                <input type="checkbox" name="Doubly Linked Lists" value="Doubly Linked Lists">
-                Doubly Linked Lists
-            </label><br>
-            <label>
-                <input type="checkbox" name="Circular Linked Lists" value="Circular Linked Lists">
-                Circular Linked Lists
-            </label><br>
-        </div>
-
-
-        <label><input type="checkbox" name="Stacks" value="Stacks"> Stacks</label><br>
-        <label><input type="checkbox" name="Queues" value="Queues"> Queues</label><br>
-        <label><input type="checkbox" name="Deques" value="Deques">Deques</label><br><br>
-
-
-
-        <!-- 3. Non-Linear Data Structures -->
-        <label>
-            <b>3. Non-Linear Data Structures</b>
-        </label><br>
-
-
-        <label><input type="checkbox" name="Hash Tables" value="Hash Tables">Hash Tables</label><br>
-
-
-        <label><input type="checkbox" name="Trees" value="Trees"> Trees</label><br>
-
-
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Binary Trees" value="Binary Trees">
-                Binary Trees
-            </label><br>
-            <label>
-                <input type="checkbox" name="Binary Search Trees (BST)" value="Binary Search Trees (BST)">
-                Binary Search Trees (BST)
-            </label><br>
-        </div>
-
-        <label><input type="checkbox" name="Heaps" value="Heaps"> Heaps</label><br>
-        <label><input type="checkbox" name="Graphs" value="Graphs"> Graphs</label><br>
-        <label><input type="checkbox" name="Matrices / Grids" value="Matrices / Grids"> Matrices /Grids</label><br><br>
-
-
-
-        <!-- 4. Foundational Core Algorithms -->
-        <label>
-            <b>4. Foundational Core Algorithms</b>
-        </label><br>
-
-
-        <label><input type="checkbox" name="Searching" value="Searching"> Searching</label><br>
-
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Linear Search" value="Linear Search">
-                Linear Search
-            </label><br>
-            <label>
-                <input type="checkbox" name="Binary Search" value="Binary Search">
-                Binary Search
-            </label><br>
-        </div>
-
-        <label><input type="checkbox" name="Sorting" value="Sorting"> Sorting</label><br>
-
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Bubble Sort" value="Bubble Sort">
-                Bubble Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Insertion Sort" value="Insertion Sort">
-                Insertion Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Selection Sort" value="Selection Sort">
-                Selection Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Merge Sort" value="Merge Sort">
-                Merge Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Quick Sort" value="Quick Sort">
-                Quick Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Heap Sort" value="Heap Sort">
-                Heap Sort
-            </label><br>
-        </div>
-
-
-        <label><input type="checkbox" name="Two-Pointer & Sliding Window"
-                value="Two-Pointer & Sliding Window">Two-Pointer & Sliding Window</label><br>
-        <label><input type="checkbox" name="Prefix Sum" value="Prefix Sum"> Prefix Sum</label><br><br>
-
-
-        <label><input type="checkbox" name="Graph & Tree Traversal Algorithms"
-                value="Graph & Tree Traversal Algorithms">Graph & Tree Traversal Algorithms</label>
-
-        <div style="margin-left:25px;">
-            <label>
-                <input type="checkbox" name="Breadth-First Search (BFS)" value="Breadth-First Search (BFS)">
-                Breadth-First Search (BFS)
-            </label><br>
-            <label>
-                <input type="checkbox" name="Depth-First Search (DFS)" value="Depth-First Search (DFS)">
-                Depth-First Search (DFS)
-            </label><br>
-            <label>
-                <input type="checkbox" name="Selection Sort" value="Selection Sort">
-                Selection Sort
-            </label><br>
-            <label>
-                <input type="checkbox" name="Inorder / Preorder / Postorder" value="Inorder / Preorder / Postorder">
-                Inorder / Preorder / Postorder
-            </label><br>
-            <label>
-                <input type="checkbox" name="Dijkstra's Algorithm" value="Dijkstra's Algorithm">
-                Dijkstra's Algorithm
-            </label><br>
-            <label>
-                <input type="checkbox" name="Bellman-Ford Algorithm" value="Bellman-Ford Algorithm">
-                Bellman-Ford Algorithm
-            </label><br>
-            <label>
-                <input type="checkbox" name="Kruskal's & Prim's Algorithm" value="Kruskal’s & Prim’s Algorithm">
-                Kruskal's & Prim's Algorithm
-            </label><br>
-        </div>
-
-
-
-        <!-- 5. Algorithmic Problem-Solving Paradigms -->
-        <label>
-            <b>5. Algorithmic Problem-Solving Paradigms</b>
-        </label><br>
-
-
-        <label><input type="checkbox" name="Recursion" value="Recursion"> Recursion</label><br>
-        <label><input type="checkbox" name="Divide and Conquer" value="Divide and Conquer"> Divide and
-            Conquer</label><br>
-        <label><input type="checkbox" name="Backtracking" value="Backtracking"> Backtracking</label><br>
-        <label><input type="checkbox" name="Greedy Method" value="Greedy Method"> Greedy Method</label><br>
-        <label><input type="checkbox" name="Dynamic Programming" value="Dynamic Programming"> Dynamic
-            Programming</label><br><br>
-
-
-        <!-- 6. Specialized & Advanced Data Structures -->
-        <label>
-            <b>6. Specialized & Advanced Data Structures</b>
-        </label><br>
-
-        <label><input type="checkbox" name="Tries" value="Tries"> Tries</label><br>
-        <label><input type="checkbox" name="Self-Balancing Trees" value="Self-Balancing Trees"> Self-Balancing
-            Trees</label><br>
-        <label><input type="checkbox" name="Segment Trees" value="Segment Trees"> Segment Trees</label><br>
-        <label><input type="checkbox" name="Fenwick Trees" value="Fenwick Trees"> Fenwick Trees</label><br>
-        <label><input type="checkbox" name="Disjoint Set Union" value="Disjoint Set Union"> Disjoint Set Union
-            (DSU)</label><br>
-
-<<<<<<< HEAD
-=======
-
->>>>>>> f835496901f3401b92ff7987a05b88c51923da73
-        {% endblock %}
-
-
-
-
-
-
-
-
-        <script>
-            // Restore saved checkbox states on page load
-            window.onload = function () {
-                document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-                    const saved = localStorage.getItem(cb.name);
-                    if (saved === "true") {
-                        cb.checked = true;
-                    }
-                    // Save state whenever checkbox changes
-                    cb.addEventListener("change", function () {
-                        localStorage.setItem(cb.name, cb.checked);
-                    });
-                });
-            };
-        </script>
-
-    </div>
+  </div>
 
 </body>
+
+</html>

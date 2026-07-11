@@ -1,6 +1,8 @@
 from database.database import problem_col
 from flask import Blueprint, render_template, request, redirect, url_for
-from bson.objectid import ObjectId
+
+
+
 
 # Blueprint
 problems_bp = Blueprint(
@@ -42,8 +44,4 @@ def view_problem():
         'view_problem.html',
         problems=problems
     )
-
-
-
-
 
