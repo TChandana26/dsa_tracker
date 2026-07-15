@@ -15,8 +15,8 @@ for rule in app.url_map.iter_rules():
     print(f"Endpoint: {rule.endpoint} URL: {rule}")
 
 @app.route('/')
-def base():
-   return render_template('base.html')
+def login():
+   return render_template('login.html')
 
 
 @app.route('/dashboard')

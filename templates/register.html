@@ -11,39 +11,6 @@
 
 <body>
     <form method="POST" action="/user/register">
-
-        <!-- Google -->
-        <a href="https://accounts.google.com/login" class="social-btn" target="_blank">
-            <img src="{{ url_for('static', filename='google.jpg') }}" alt="google"
-                style="width:20px; height:20px;">Google
-        </a>
-        <i class="fa-brands fa-google google"></i>
-
-
-        </a>
-
-        <div class="social-row">
-
-            <!-- LinkedIn -->
-            <a href="https://www.linkedin.com/login" class="social-btn social-small" target="_blank">
-                <img src="{{ url_for('static', filename='linkdlin.png') }}" alt="linkdlin"
-                    style="width:20px; height:20px;">LinkedIn
-            </a>
-            <i class="fa-brands fa-linkedin linkedin"></i>
-
-
-            </a>
-
-            <!-- GitHub -->
-            <a href="https://github.com/login" class="social-btn social-small" target="_blank">
-                <img src="{{ url_for('static', filename='github.png') }}" alt="Github"
-                    style="width:20px; height:20px;">Github
-            </a>
-            <i class="fa-brands fa-github github"></i>
-
-
-            </a>
-
         </div>
         <div class="divider">
             <hr>
@@ -52,9 +19,8 @@
         </div>
         <div class="form-box" >
 
-            <input type="text" name="username" placeholder="Enter your Username" required>
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <input type="password" name="password" placeholder="Enter your Password" required>
+            Username :<input type="text" name="username" placeholder="Enter your Username" required>
+            Password :<input type="password" name="password" placeholder="Enter your Password" required>
             <button class="big" type="submit">Submit</button>
             <h6><i>Already User:</i></h6> <a href="/user/login">
                 <h5>Login</h5>

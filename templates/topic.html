@@ -1,84 +1,1403 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>DSA Concepts Checkboxes</title>
+  <meta charset="UTF-8">
+  <title>DSA Topics</title>
+
+  <link rel="stylesheet" href="{{ url_for('static', filename='topic.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
+
 <body>
-  <h2>DSA Concepts</h2>
 
-  <!-- 1. Mathematical Foundations & Complexity Analysis -->
-  <label>
-    <input type="checkbox" name="Mathematical Foundations & Complexity Analysis" value="Mathematical Foundations & Complexity Analysis">
-    <b>1. Mathematical Foundations & Complexity Analysis</b>
-  </label><br>
-  <label>
-    <input type="checkbox" name="Asymptotic Notation" value="Asymptotic Notation">
-    Asymptotic Notation
-  </label><br>
-  <label>
-    <input type="checkbox" name="Time Complexity" value="Time Complexity">
-    Time Complexity
-  </label><br>
-  <label>
-    <input type="checkbox" name="Space Complexity" value="Space Complexity">
-    Space Complexity
-  </label><br>
-  <label>
-    <input type="checkbox" name="Bit Manipulation" value="Bit Manipulation">
-    Bit Manipulation
-  </label><br><br>
+  <div class="dashboard">
 
-  <!-- 2. Linear Data Structures -->
-  <label>
-    <input type="checkbox" name="Linear Data Structures" value="Linear Data Structures">
-    <b>2. Linear Data Structures</b>
-  </label><br>
-  <label><input type="checkbox" name="Arrays" value="Arrays"> Arrays</label><br>
-  <label><input type="checkbox" name="Strings" value="Strings"> Strings</label><br>
-  <label><input type="checkbox" name="Linked List" value="Linked List"> Linked List</label><br>
-  <label><input type="checkbox" name="Stacks" value="Stacks"> Stacks</label><br>
-  <label><input type="checkbox" name="Queues" value="Queues"> Queues</label><br>
-  <label><input type="checkbox" name="Hash Tables" value="Hash Tables"> Hash Tables</label><br><br>
+    <!-- Sidebar -->
 
-  <!-- 3. Non-Linear Data Structures -->
-  <label>
-    <input type="checkbox" name="Non-Linear Data Structures" value="Non-Linear Data Structures">
-    <b>3. Non-Linear Data Structures</b>
-  </label><br>
-  <label><input type="checkbox" name="Trees" value="Trees"> Trees</label><br>
-  <label><input type="checkbox" name="Heaps" value="Heaps"> Heaps</label><br>
-  <label><input type="checkbox" name="Graphs" value="Graphs"> Graphs</label><br><br>
+    <aside class="sidebar">
 
-  <!-- 4. Foundational Core Algorithms -->
-  <label>
-    <input type="checkbox" name="Foundational Core Algorithms" value="Foundational Core Algorithms">
-    <b>4. Foundational Core Algorithms</b>
-  </label><br>
-  <label><input type="checkbox" name="Searching" value="Searching"> Searching</label><br>
-  <label><input type="checkbox" name="Sorting" value="Sorting"> Sorting</label><br>
-  <label><input type="checkbox" name="Two-Pointer & Sliding Window" value="Two-Pointer & Sliding Window"> Two-Pointer & Sliding Window</label><br>
-  <label><input type="checkbox" name="Prefix Sum" value="Prefix Sum"> Prefix Sum</label><br><br>
+      <div class="logo">
+        <i class="fa-solid fa-code"></i>
+        <h2>DSA_TRACKER</h2>
+      </div>
 
-  <!-- 5. Algorithmic Problem-Solving Paradigms -->
-  <label>
-    <input type="checkbox" name="Algorithmic Problem-Solving Paradigms" value="Algorithmic Problem-Solving Paradigms">
-    <b>5. Algorithmic Problem-Solving Paradigms</b>
-  </label><br>
-  <label><input type="checkbox" name="Recursion" value="Recursion"> Recursion</label><br>
-  <label><input type="checkbox" name="Divide and Conquer" value="Divide and Conquer"> Divide and Conquer</label><br>
-  <label><input type="checkbox" name="Backtracking" value="Backtracking"> Backtracking</label><br>
-  <label><input type="checkbox" name="Greedy Method" value="Greedy Method"> Greedy Method</label><br>
-  <label><input type="checkbox" name="Dynamic Programming" value="Dynamic Programming"> Dynamic Programming</label><br><br>
+      <ul>
 
-  <!-- 6. Specialized & Advanced Data Structures -->
-  <label>
-    <input type="checkbox" name="Specialized & Advanced Data Structures" value="Specialized & Advanced Data Structures">
-    <b>6. Specialized & Advanced Data Structures</b>
-  </label><br>
-  <label><input type="checkbox" name="Tries" value="Tries"> Tries</label><br>
-  <label><input type="checkbox" name="Self-Balancing Trees" value="Self-Balancing Trees"> Self-Balancing Trees</label><br>
-  <label><input type="checkbox" name="Segment Trees" value="Segment Trees"> Segment Trees</label><br>
-  <label><input type="checkbox" name="Fenwick Trees" value="Fenwick Trees"> Fenwick Trees</label><br>
-  <label><input type="checkbox" name="Disjoint Set Union" value="Disjoint Set Union"> Disjoint Set Union (DSU)</label><br>
+        <li>
+          <a href="/dashboard">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+          </a>
+        </li>
+
+        <li class="active">
+          <a href="/problem/topic">
+            <i class="fa-solid fa-book"></i>
+            Topics
+          </a>
+        </li>
+
+        <li>
+          <a href="/problem/view">
+            <i class="fa-solid fa-list-check"></i>
+            Problems
+          </a>
+        </li>
+
+      </ul>
+      
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <h1>DSA Learning Roadmap</h1>
+
+      </header>
+
+      <section class="topic-grid">
+        <! ---------------------------mathematics----------------- ---------->
+          <div class="topic-card">
+            <i class="fa-solid fa-calculator"></i>
+            <h3>Mathematics</h3>
+            <input type="checkbox" class="topic" name="math_topics" value="Number System" {% if "Number System" in
+              completed_topics %}checked{% endif %}>Number System <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Basic Arithmetic" {% if "Basic Arithmetic" in
+              completed_topics %}checked{%endif%}> Basic Arithmetic <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Factors & Multiples" {%
+              if "Factors & Multiples" in completed_topics %}checked{%endif%}> Factors & Multiples <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Prime Numbers" {% if "Prime Numbers" in
+              completed_topics %}checked{%endif%}> Prime Numbers <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Greatest Common Divisor (GCD)" {%
+              if "Greatest Common Divisor (GCD)" in completed_topics %}checked{%endif%}> Greatest Common Divisor
+            (GCD)
+            <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Least Common Multiple (LCM)" {%
+              if "Least Common Multiple (LCM)" in completed_topics %}checked{%endif%}> Least Common Multiple (LCM)
+            <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Modular Arithmetic" {%
+              if "Modular Arithmetic" in completed_topics %}checked{%endif%}> Modular Arithmetic <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Exponentiation (Fast Power)" {%
+              if "Exponentiation (Fast Power)" in completed_topics %}checked{%endif%}> Exponentiation (Fast Power)
+            <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Logarithms" {% if "Logarithms" in
+              completed_topics %}checked{%endif%}> Logarithms <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Permutations & Combinations" {%
+              if "Permuatations & Combinations" in completed_topics %}checked{%endif%}> Permutations & Combinations
+            <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Probability Basics" {%
+              if "Probability Basics" in completed_topics %}checked{%endif%}> Probability Basics <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Set Theory" {% if "Set Theory" in
+              completed_topics %}checked{%endif%}> Set Theory <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Relations & Functions" {%
+              if "Relations & Functions" in completed_topics %}checked{%endif%}> Relations & Functions <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Matrices" {% if "Matrices" in
+              completed_topics %}checked{%endif%}> Matrices <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Coordinate Geometry Basics" {%
+              if "Coordinate Geometry Basics" in completed_topics %}checked{%endif%}> Coordinate Geometry Basics
+            <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Sequences & Series" {%
+              if "Sequences & Series" in completed_topics %}checked{%endif%}> Sequences & Series <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Recurrence Relations" {%
+              if "Recurrence Relations" in completed_topics %}checked{%endif%}> Recurrence Relations <br>
+
+            <input type="checkbox" class="topic" name="math_topics" value="Bitwise Mathematics" {%
+              if "Bitwise Mathematics" in completed_topics %}checked{%endif%}> Bitwise Mathematics <br>
+          </div>
+
+          <! --------------------------------Complexity analysis--------------------------------->
+            <div class="topic-card">
+              <i class="fa-solid fa-clock"></i>
+              <h3>Complexity Analysis</h3>
+              <input type="checkbox" class="topic"  name="complexity_topics" value="Introduction to Complexity Analysis" {%
+                if "Introduction to Complexity Analysis " in completed_topics %}checked{% endif %}> Introduction
+              to
+              Complexity Analysis <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Algorithm Analysis" {%
+                if "Algorithm Analysis" in completed_topics %}checked{% endif %}> Algorithm Analysis <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Asymptotic Notation" {%
+                if "Asymptotic Notation" in completed_topics %}checked{% endif %}> Asymptotic Notation <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Big O Notation (O)" {%
+                if "Big O Notation (O)" in completed_topics %}checked{% endif %}> Big O Notation (O) <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Big Omega Notation (Ω)" {%
+                if "Big Omega Notation (Ω)" in completed_topics %}checked{% endif %}> Big Omega Notation (Ω)
+              <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Big Theta Notation (Θ)" {%
+                if "Big Theta Notation (Θ)" in completed_topics %}checked{% endif %}> Big Theta Notation (Θ)
+              <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Little o Notation" {%
+                if "Little o Notation" in completed_topics %}checked{% endif %}> Little o Notation <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Little Omega Notation" {%
+                if "Little Omega Notation" in completed_topics %}checked{% endif %}> Little Omega Notation <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Best Case Complexity" {%
+                if "Best Case Complexity" in completed_topics %}checked{% endif %}> Best Case Complexity <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Average Case Complexity" {%
+                if "Average Case Complexity" in completed_topics %}checked{% endif %}> Average Case Complexity
+              <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Worst Case Complexity" {%
+                if "Worst Case Complexuty" in completed_topics %}checked{% endif %}> Worst Case Complexity <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Time Complexity" {%
+                if "Time complexity" in completed_topics %}checked{% endif %}> Time Complexity <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Space Complexity" {%
+                if "space Complexity" in completed_topics %}checked{% endif %}> Space Complexity <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Amortized Analysis" {%
+                if "Amortized Analysis" in completed_topics %}checked{% endif %}> Amortized Analysis <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Recurrence Relations" {%
+                if "Recurrence Relations" in completed_topics %}checked{% endif %}> Recurrence Relations <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Master Theorem" {%
+                if "Master Theorem" in completed_topics %}checked{% endif %}> Master Theorem <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Growth Rate of Functions" {%
+                if "Growth Rate of Functions" in completed_topics %}checked{% endif %}> Growth Rate of Functions
+              <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics" value="Comparing Algorithm Efficiency" {%
+                if "comparing Alogithum Efficiency " in completed_topics %}checked{% endif %}> Comparing
+              Algorithm
+              Efficiency <br>
+
+              <input type="checkbox" class="topic" name="complexity_topics"
+                value="Constant, Logarithmic, Linear, Linearithmic, Quadratic & Exponential Complexities" {%
+                if "Constant, Logarithmic, Linear, Linearithmic, Quadratic & Exponential Complexities" in
+                completed_topics %}checked{% endif %}> Constant,
+              Logarithmic, Linear, Linearithmic, Quadratic & Exponential Complexities <br>
+            </div>
+
+            <! ----------------------------------------Arrays----------------------------->
+
+              <div class="topic-card">
+                <i class="fa-solid fa-table-cells"></i>
+                <h3>Arrays</h3>
+                <input type="checkbox" class="topic" name="array_topics" value="Introduction to Arrays" {%
+                  if "Introduction to Arrays" in completed_topics %}checked{% endif %}> Introduction to Arrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Array Representation" {%
+                  if "Array Representataion" in completed_topics %}checked{% endif %}> Array Representation <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Array Traversal" {%
+                  if "Array Traversal " in completed_topics %}checked{% endif %}> Array Traversal <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Insertion in Array" {%
+                  if "Insertion in Array" in completed_topics %}checked{% endif %}> Insertion in Array <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Deletion in Array" {%
+                  if "Deletion in Array" in completed_topics %}checked{% endif %}> Deletion in Array <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Searching in Array" {%
+                  if "Searching in Array" in completed_topics %}checked{% endif %}> Searching in Array <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Updating Array Elements" {%
+                  if "Updating Array Elements" in completed_topics %}checked{% endif %}> Updating Array Elements <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Reversing an Array" {%
+                  if "Reversing an Array" in completed_topics %}checked{% endif %}> Reversing an Array <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Array Rotation" {% if "Array Rotation"
+                  in completed_topics %}checked{% endif %}> Array Rotation <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Prefix Sum" {% if "Prefix Sum" in
+                  completed_topics %}checked{% endif %}> Prefix Sum <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Difference Array" {%
+                  if "Difference Array" in completed_topics %}checked{% endif %}> Difference Array <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Sliding Window Technique" {%
+                  if "Sliding Window Technique" in completed_topics %}checked{% endif %}> Sliding Window Technique
+                <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Two Pointer Technique" {%
+                  if "Twp Pointer Technique" in completed_topics %}checked{% endif %}> Two Pointer Technique <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Kadane's Algorithm" {%
+                  if "Kadane's Algorithum" in completed_topics %}checked{% endif %}> Kadane's Algorithm <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Binary Search on Arrays" {%
+                  if "Binary Search on Arrays" in completed_topics %}checked{% endif %}> Binary Search on Arrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Sorting Arrays" {% if "Sorting Arrays"
+                  in completed_topics %}checked{% endif %}> Sorting Arrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Merging Arrays" {% if "Merging Arrays"
+                  in completed_topics %}checked{% endif %}> Merging Arrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Subarrays" {% if "Subarrays" in
+                  completed_topics %}checked{% endif %}> Subarrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Multidimensional Arrays" {%
+                  if "Multidimensional Arrays" in completed_topics %}checked{% endif %}> Multidimensional Arrays <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Matrix Operations" {%
+                  if "Matrix Operations" in completed_topics %}checked{% endif %}> Matrix Operations <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Sparse Matrix" {% if "Sparse Matrix" in
+                  completed_topics %}checked{% endif %}> Sparse Matrix <br>
+
+                <input type="checkbox" class="topic" name="array_topics" value="Array Applications" {%
+                  if "Array Applications" in completed_topics %}checked{% endif %}> Array Applications <br>
+              </div>
+
+              <! ---------------------------------STrings------------------------------------->
+
+                <div class="topic-card">
+                  <i class="fa-solid fa-font"></i>
+                  <h3>Strings</h3>
+                  <input type="checkbox" class="topic" name="string_topics" value="Introduction to Strings" {%
+                    if "Introduction to Strings" in completed_topics %}checked{% endif %}> Introduction to Strings
+                  <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Representation" {%
+                    if "String Representation" in completed_topics %}checked{% endif %}> String Representation <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Traversal" {%
+                    if "String Traversal" in completed_topics %}checked{% endif %}> String Traversal <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Input and Output" {%
+                    if "String Input and Output" in completed_topics %}checked{% endif %}> String Input and Output
+                  <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Concatenation" {%
+                    if "String Concatenation" in completed_topics %}checked{% endif %}> String Concatenation <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Comparison" {%
+                    if "String Comparision" in completed_topics %}checked{% endif %}> String Comparison <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Substring" {% if "Substring" in
+                    completed_topics %}checked{% endif %}> Substring <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Reversal" {%
+                    if "String Reversal" in completed_topics %}checked{% endif %}> String Reversal <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Palindrome Strings" {%
+                    if "Palindrome Strings" in completed_topics %}checked{% endif %}> Palindrome Strings <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Anagrams" {% if "Anagrams" in
+                    completed_topics %}checked{% endif %}> Anagrams <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Character Frequency" {%
+                    if "Character Frequency" in completed_topics %}checked{% endif %}> Character Frequency <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Hashing for Strings" {%
+                    if "Hashing for Strings" in completed_topics %}checked{% endif %}> Hashing for Strings <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Sliding Window on Strings" {%
+                    if "Sliding Window on Strings" in completed_topics %}checked{% endif %}> Sliding Window on
+                  Strings <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Two Pointer Technique on Strings" {%
+                    if "Two Pointer Technique on Strings" in completed_topics %}checked{% endif %}> Two Pointer
+                  Technique on Strings <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Pattern Matching" {%
+                    if "Pattern Matching" in completed_topics %}checked{% endif %}> Pattern Matching <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Knuth-Morris-Pratt (KMP) Algorithm"
+                    {% if "Knuth-Morris-Pratt (KMP) Algorithm" in completed_topics %}checked{% endif %}>
+                  Knuth-Morris-Pratt (KMP) Algorithm <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Rabin-Karp Algorithm" {%
+                    if "Rabin-Karp Algorithm" in completed_topics %}checked{% endif %}> Rabin-Karp Algorithm <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Z Algorithm" {% if "Z Algorithm" in
+                    completed_topics %}checked{% endif %}> Z Algorithm <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Longest Common Prefix" {%
+                    if "Longest Common Prefix" in completed_topics %}checked{% endif %}> Longest Common Prefix <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="Longest Palindromic Substring" {%
+                    if "Longest Palindromic Substring" in completed_topics %}checked{% endif %}> Longest Palindromic
+                  Substring <br>
+
+                  <input type="checkbox" class="topic" name="string_topics" value="String Applications" {%
+                    if "String Applications" in completed_topics %}checked{% endif %}> String Applications <br>
+                </div>
+
+                <! -----------------------------------------linked list-------------------------------------------->
+                  <div class="topic-card">
+                    <i class="fa-solid fa-link"></i>
+                    <h3>Linked List</h3>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Introduction to Linked Lists"
+                      {% if "Introduction to Linked Lists" in completed_topics %}checked{% endif %}> Introduction to
+                    Linked Lists <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Types of Linked Lists" {%
+                      if "Types of Linked Lists" in completed_topics %}checked{% endif %}> Types of Linked Lists <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Singly Linked List" {%
+                      if "Singly Linked List" in completed_topics %}checked{% endif %}> Singly Linked List <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Doubly Linked List" {%
+                      if "Doubly Linked List" in completed_topics %}checked{% endif %}> Doubly Linked List <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Circular Linked List" {%
+                      if "Circular Linked List" in completed_topics %}checked{% endif %}> Circular Linked List <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Node Structure" {%
+                      if "Node Structure" in completed_topics %}checked{% endif %}> Node Structure <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Traversal" {% if "Traversal"
+                      in completed_topics %}checked{% endif %}> Traversal <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Insertion at Beginning" {%
+                      if "Insertion at Beginning" in completed_topics %}checked{% endif %}> Insertion at Beginning <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Insertion at End" {%
+                      if "Insertion at End" in completed_topics %}checked{% endif %}> Insertion at End <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics"
+                      value="Insertion at Specific Position" {% if "Insertion at Specific Position" in completed_topics
+                      %}checked{% endif %}> Insertion at Specific Position <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Deletion at Beginning" {%
+                      if "Deletion at Beginning" in completed_topics %}checked{% endif %}> Deletion at Beginning <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Deletion at End" {%
+                      if "Deletion at End" in completed_topics %}checked{% endif %}> Deletion at End <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Deletion at Specific Position"
+                      {% if "Deletion at Specific Position" in completed_topics %}checked{% endif %}> Deletion at
+                    Specific Position <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Searching in Linked List" {%
+                      if "Searching in Linked List" in completed_topics %}checked{% endif %}> Searching in Linked List
+                    <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Updating Nodes" {%
+                      if "Updating Nodes" in completed_topics %}checked{% endif %}> Updating Nodes <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Reversing a Linked List" {%
+                      if "Reversing a Linked List" in completed_topics %}checked{% endif %}> Reversing a Linked List
+                    <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Finding Middle Node" {%
+                      if "Finding Middle Node" in completed_topics %}checked{% endif %}> Finding Middle Node <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Detecting Loop (Cycle)" {%
+                      if "Detecting Loop (Cycle)" in completed_topics %}checked{% endif %}> Detecting Loop (Cycle) <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Removing Loop" {%
+                      if "Removing Loop" in completed_topics %}checked{% endif %}> Removing Loop <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Merge Two Sorted Linked Lists"
+                      {% if "Merge Two Sorted Linked Lists" in completed_topics %}checked{% endif %}> Merge Two Sorted
+                    Linked Lists <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Merge Sort on Linked List" {%
+                      if "Merge Sort on Linked List" in completed_topics %}checked{% endif %}> Merge Sort on Linked List
+                    <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Intersection of Linked Lists"
+                      {% if "Intersection of Linked Lists" in completed_topics %}checked{% endif %}> Intersection of
+                    Linked Lists <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Palindrome Linked List" {%
+                      if "Palindrome Linked List" in completed_topics %}checked{% endif %}> Palindrome Linked List <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Flatten Linked List" {%
+                      if "Flatten Linked List" in completed_topics %}checked{% endif %}> Flatten Linked List <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics"
+                      value="Clone Linked List with Random Pointer" {% if "Clone Linked List with Random Pointer" in
+                      completed_topics %}checked{% endif %}> Clone Linked List with Random Pointer <br>
+
+                    <input type="checkbox" class="topic" name="linked_list_topics" value="Applications of Linked Lists"
+                      {% if "Applications of Linked Lists" in completed_topics %}checked{% endif %}> Applications of
+                    Linked Lists <br>
+                  </div>
+
+                  <! --------------------------------Satcks------------------------------->
+
+                    <div class="topic-card">
+                      <i class="fa-solid fa-layer-group"></i>
+                      <h3>Stacks</h3>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Introduction to Stacks" {%
+                        if "Introduction to Stacks" in completed_topics %}checked{% endif %}> Introduction to Stacks
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Stack Representation" {%
+                        if "Stack Representation" in completed_topics %}checked{% endif %}> Stack Representation <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics"
+                        value="Stack Operations (Push, Pop, Peek)" {% if "Stack Operations (Push, Pop, Peek)" in
+                        completed_topics %}checked{% endif %}> Stack Operations (Push, Pop, Peek) <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="isEmpty() and isFull()" {%
+                        if "isEmpty() and isFull()" in completed_topics %}checked{% endif %}> isEmpty() and isFull()
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Stack using Arrays" {%
+                        if "Stack using Arrays" in completed_topics %}checked{% endif %}> Stack using Arrays <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Stack using Linked List" {%
+                        if "Stack using Linked List" in completed_topics %}checked{% endif %}> Stack using Linked List
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Applications of Stacks" {%
+                        if "Applications of Stacks" in completed_topics %}checked{% endif %}> Applications of Stacks
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Balanced Parentheses" {%
+                        if "Balanced Parentheses" in completed_topics %}checked{% endif %}> Balanced Parentheses <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics"
+                        value="Infix, Prefix and Postfix Expressions" {% if "Infix, Prefix and Postfix Expressions" in
+                        completed_topics %}checked{% endif %}> Infix, Prefix and Postfix Expressions <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Infix to Postfix Conversion" {%
+                        if "Infix to Postfix Conversion" in completed_topics %}checked{% endif %}> Infix to Postfix
+                      Conversion <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Infix to Prefix Conversion" {%
+                        if "Infix to Prefix Conversion" in completed_topics %}checked{% endif %}> Infix to Prefix
+                      Conversion <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Postfix Evaluation" {%
+                        if "Postfix Evaluation" in completed_topics %}checked{% endif %}> Postfix Evaluation <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Prefix Evaluation" {%
+                        if "Prefix Evaluation" in completed_topics %}checked{% endif %}> Prefix Evaluation <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Reverse a Stack" {%
+                        if "Reverse a Stack" in completed_topics %}checked{% endif %}> Reverse a Stack <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Sort a Stack" {% if "Sort a Stack"
+                        in completed_topics %}checked{% endif %}> Sort a Stack <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Next Greater Element" {%
+                        if "Next Greater Element" in completed_topics %}checked{% endif %}> Next Greater Element <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Previous Greater Element" {%
+                        if "Previous Greater Element" in completed_topics %}checked{% endif %}> Previous Greater Element
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Next Smaller Element" {%
+                        if "Next Smaller Element" in completed_topics %}checked{% endif %}> Next Smaller Element <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Previous Smaller Element" {%
+                        if "Previous Smaller Element" in completed_topics %}checked{% endif %}> Previous Smaller Element
+                      <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Monotonic Stack" {%
+                        if "Monotonic Stack" in completed_topics %}checked{% endif %}> Monotonic Stack <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Largest Rectangle in Histogram" {%
+                        if "Largest Rectangle in Histogram" in completed_topics %}checked{% endif %}> Largest Rectangle
+                      in Histogram <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Min Stack" {% if "Min Stack" in
+                        completed_topics %}checked{% endif %}> Min Stack <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Implement Stack using Queues" {%
+                        if "Implement Stack using Queues" in completed_topics %}checked{% endif %}> Implement Stack
+                      using Queues <br>
+
+                      <input type="checkbox" class="topic" name="stack_topics" value="Design Stack Problems" {%
+                        if "Design Stack Problems" in completed_topics %}checked{% endif %}> Design Stack Problems <br>
+                    </div>
+
+                    <! -------------------------------Queues----------------------------------->
+
+                      <div class="topic-card">
+                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                        <h3>Queues</h3>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Introduction to Queues" {%
+                          if "Introduction to Queues" in completed_topics %}checked{% endif %}> Introduction to Queues
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics"
+                          value="Queue Operations (Enqueue, Dequeue)" {% if "Queue Operations (Enqueue, Dequeue)" in
+                          completed_topics %}checked{% endif %}> Queue Operations (Enqueue, Dequeue) <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Front and Rear Operations" {%
+                          if "Front and Rear Operations" in completed_topics %}checked{% endif %}> Front and Rear
+                        Operations <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="isEmpty() and isFull()" {%
+                          if "isEmpty() and isFull()" in completed_topics %}checked{% endif %}> isEmpty() and isFull()
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Queue using Arrays" {%
+                          if "Queue using Arrays" in completed_topics %}checked{% endif %}> Queue using Arrays <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Queue using Linked List" {%
+                          if "Queue using Linked List" in completed_topics %}checked{% endif %}> Queue using Linked List
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Circular Queue" {%
+                          if "Circular Queue" in completed_topics %}checked{% endif %}> Circular Queue <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Deque (Double Ended Queue)" {%
+                          if "Deque (Double Ended Queue)" in completed_topics %}checked{% endif %}> Deque (Double Ended
+                        Queue) <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Input Restricted Deque" {%
+                          if "Input Restricted Deque" in completed_topics %}checked{% endif %}> Input Restricted Deque
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Output Restricted Deque" {%
+                          if "Output Restricted Deque" in completed_topics %}checked{% endif %}> Output Restricted Deque
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Priority Queue" {%
+                          if "Priority Queue" in completed_topics %}checked{% endif %}> Priority Queue <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Queue using Two Stacks" {%
+                          if "Queue using Two Stacks" in completed_topics %}checked{% endif %}> Queue using Two Stacks
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Implement Queue using Stack" {%
+                          if "Implement Queue using Stack" in completed_topics %}checked{% endif %}> Implement Queue
+                        using Stack <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Implement Stack using Queue" {%
+                          if "Implement Stack using Queue" in completed_topics %}checked{% endif %}> Implement Stack
+                        using Queue <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Breadth First Search (BFS)" {%
+                          if "Breadth First Search (BFS)" in completed_topics %}checked{% endif %}> Breadth First Search
+                        (BFS) <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Level Order Traversal" {%
+                          if "Level Order Traversal" in completed_topics %}checked{% endif %}> Level Order Traversal
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Sliding Window Maximum" {%
+                          if "Sliding Window Maximum" in completed_topics %}checked{% endif %}> Sliding Window Maximum
+                        <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics"
+                          value="First Non-Repeating Character in a Stream" {%
+                          if "First Non-Repeating Character in a Stream" in completed_topics %}checked{% endif %}> First
+                        Non-Repeating Character in a Stream <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics"
+                          value="Generate Binary Numbers using Queue" {% if "Generate Binary Numbers using Queue" in
+                          completed_topics %}checked{% endif %}> Generate Binary Numbers using Queue <br>
+
+                        <input type="checkbox" class="topic" name="queue_topics" value="Applications of Queues" {%
+                          if "Applications of Queues" in completed_topics %}checked{% endif %}> Applications of Queues
+                        <br>
+                      </div>
+
+                      <!----------------------------------------recursion------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-repeat"></i>
+                        <h3>Recursion</h3>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Introduction to Recursion"
+                          {% if "Introduction to Recursion" in completed_topics %}checked{% endif %}> Introduction to
+                        Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Recursive Thinking" {%
+                          if "Recursive Thinking" in completed_topics %}checked{% endif %}> Recursive Thinking <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics"
+                          value="Base Case and Recursive Case" {% if "Base Case and Recursive Case" in completed_topics
+                          %}checked{% endif %}> Base Case and Recursive Case <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Call Stack" {%
+                          if "Call Stack" in completed_topics %}checked{% endif %}> Call Stack <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Recursion Tree" {%
+                          if "Recursion Tree" in completed_topics %}checked{% endif %}> Recursion Tree <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Direct Recursion" {%
+                          if "Direct Recursion" in completed_topics %}checked{% endif %}> Direct Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Indirect Recursion" {%
+                          if "Indirect Recursion" in completed_topics %}checked{% endif %}> Indirect Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Tail Recursion" {%
+                          if "Tail Recursion" in completed_topics %}checked{% endif %}> Tail Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Head Recursion" {%
+                          if "Head Recursion" in completed_topics %}checked{% endif %}> Head Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Tree Recursion" {%
+                          if "Tree Recursion" in completed_topics %}checked{% endif %}> Tree Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Linear Recursion" {%
+                          if "Linear Recursion" in completed_topics %}checked{% endif %}> Linear Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Nested Recursion" {%
+                          if "Nested Recursion" in completed_topics %}checked{% endif %}> Nested Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Factorial using Recursion"
+                          {% if "Factorial using Recursion" in completed_topics %}checked{% endif %}> Factorial using
+                        Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Fibonacci using Recursion"
+                          {% if "Fibonacci using Recursion" in completed_topics %}checked{% endif %}> Fibonacci using
+                        Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics"
+                          value="Binary Search using Recursion" {% if "Binary Search using Recursion" in
+                          completed_topics %}checked{% endif %}> Binary Search using Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Tower of Hanoi" {%
+                          if "Tower of Hanoi" in completed_topics %}checked{% endif %}> Tower of Hanoi <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Generate Subsequences" {%
+                          if "Generate Subsequences" in completed_topics %}checked{% endif %}> Generate Subsequences
+                        <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Generate Permutations" {%
+                          if "Generate Permutations" in completed_topics %}checked{% endif %}> Generate Permutations
+                        <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Backtracking Basics" {%
+                          if "Backtracking Basics" in completed_topics %}checked{% endif %}> Backtracking Basics <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Recursion with Strings" {%
+                          if "Recursion with Strings" in completed_topics %}checked{% endif %}> Recursion with Strings
+                        <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Recursion with Arrays" {%
+                          if "Recursion with Arrays" in completed_topics %}checked{% endif %}> Recursion with Arrays
+                        <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics"
+                          value="Recursive Linked List Problems" {% if "Recursive Linked List Problems" in
+                          completed_topics %}checked{% endif %}> Recursive Linked List Problems <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics"
+                          value="Time and Space Complexity of Recursion" {% if "Time and Space Complexity of Recursion"
+                          in completed_topics %}checked{% endif %}> Time and Space Complexity of Recursion <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics" value="Memoization Basics" {%
+                          if "Memoization Basics" in completed_topics %}checked{% endif %}> Memoization Basics <br>
+
+                        <input type="checkbox" class="topic" name="recursion_topics"
+                          value="Common Recursion Interview Problems" {% if "Common Recursion Interview Problems" in
+                          completed_topics %}checked{% endif %}> Common Recursion Interview Problems <br>
+                      </div>
+
+                      <!-------------------------------Sorting------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-arrow-down-a-z"></i>
+                        <h3>Sorting</h3>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Introduction to Sorting" {%
+                          if "Introduction to Sorting" in completed_topics %}checked{% endif %}> Introduction to Sorting
+                        <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Bubble Sort" {%
+                          if "Bubble Sort" in completed_topics %}checked{% endif %}> Bubble Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Selection Sort" {%
+                          if "Selection Sort" in completed_topics %}checked{% endif %}> Selection Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Insertion Sort" {%
+                          if "Insertion Sort" in completed_topics %}checked{% endif %}> Insertion Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Merge Sort" {% if "Merge Sort"
+                          in completed_topics %}checked{% endif %}> Merge Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Quick Sort" {% if "Quick Sort"
+                          in completed_topics %}checked{% endif %}> Quick Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Heap Sort" {% if "Heap Sort"
+                          in completed_topics %}checked{% endif %}> Heap Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Counting Sort" {%
+                          if "Counting Sort" in completed_topics %}checked{% endif %}> Counting Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Radix Sort" {% if "Radix Sort"
+                          in completed_topics %}checked{% endif %}> Radix Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Bucket Sort" {%
+                          if "Bucket Sort" in completed_topics %}checked{% endif %}> Bucket Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Shell Sort" {% if "Shell Sort"
+                          in completed_topics %}checked{% endif %}> Shell Sort <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Stable vs Unstable Sorting" {%
+                          if "Stable vs Unstable Sorting" in completed_topics %}checked{% endif %}> Stable vs Unstable
+                        Sorting <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics"
+                          value="In-place vs Out-of-place Sorting" {% if "In-place vs Out-of-place Sorting" in
+                          completed_topics %}checked{% endif %}> In-place vs Out-of-place Sorting <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics"
+                          value="Comparison vs Non-comparison Sorting" {% if "Comparison vs Non-comparison Sorting" in
+                          completed_topics %}checked{% endif %}> Comparison vs Non-comparison Sorting <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics"
+                          value="Time Complexity of Sorting Algorithms" {% if "Time Complexity of Sorting Algorithms" in
+                          completed_topics %}checked{% endif %}> Time Complexity of Sorting Algorithms <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics"
+                          value="Space Complexity of Sorting Algorithms" {% if "Space Complexity of Sorting Algorithms"
+                          in completed_topics %}checked{% endif %}> Space Complexity of Sorting Algorithms <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Custom Sorting" {%
+                          if "Custom Sorting" in completed_topics %}checked{% endif %}> Custom Sorting <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Sorting Strings" {%
+                          if "Sorting Strings" in completed_topics %}checked{% endif %}> Sorting Strings <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Sorting Linked Lists" {%
+                          if "Sorting Linked Lists" in completed_topics %}checked{% endif %}> Sorting Linked Lists <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Kth Largest/Smallest Element"
+                          {% if "Kth Largest/Smallest Element" in completed_topics %}checked{% endif %}> Kth
+                        Largest/Smallest Element <br>
+
+                        <input type="checkbox" class="topic" name="sorting_topics" value="Applications of Sorting" {%
+                          if "Applications of Sorting" in completed_topics %}checked{% endif %}> Applications of
+                        Sorting<br>
+                      </div>
+                      <!--------------------------SEarching----------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <h3>Searching</h3>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Introduction to Searching"
+                          {% if "Introduction to Searching" in completed_topics %}checked{% endif %}> Introduction to
+                        Searching <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Linear Search" {%
+                          if "Linear Search" in completed_topics %}checked{% endif %}> Linear Search <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Binary Search" {%
+                          if "Binary Search" in completed_topics %}checked{% endif %}> Binary Search <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Recursive Binary Search" {%
+                          if "Recursive Binary Search" in completed_topics %}checked{% endif %}> Recursive Binary Search
+                        <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Binary Search on Answer" {%
+                          if "Binary Search on Answer" in completed_topics %}checked{% endif %}> Binary Search on Answer
+                        <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Lower Bound" {%
+                          if "Lower Bound" in completed_topics %}checked{% endif %}> Lower Bound <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Upper Bound" {%
+                          if "Upper Bound" in completed_topics %}checked{% endif %}> Upper Bound <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="First and Last Occurrence"
+                          {% if "First and Last Occurrence" in completed_topics %}checked{% endif %}> First and Last
+                        Occurrence <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Count Occurrences" {%
+                          if "Count Occurrences" in completed_topics %}checked{% endif %}> Count Occurrences <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics"
+                          value="Search in Rotated Sorted Array" {% if "Search in Rotated Sorted Array" in
+                          completed_topics %}checked{% endif %}> Search in Rotated Sorted Array <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics"
+                          value="Search in Nearly Sorted Array" {% if "Search in Nearly Sorted Array" in
+                          completed_topics %}checked{% endif %}> Search in Nearly Sorted Array <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics"
+                          value="Search in Infinite Sorted Array" {% if "Search in Infinite Sorted Array" in
+                          completed_topics %}checked{% endif %}> Search in Infinite Sorted Array
+                        <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Peak Element" {%
+                          if "Peak Element" in completed_topics %}checked{% endif %}> Peak Element <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Floor and Ceil" {%
+                          if "Floor and Ceil" in completed_topics %}checked{% endif %}> Floor and Ceil <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics"
+                          value="Square Root using Binary Search" {% if "Square Root using Binary Search" in
+                          completed_topics %}checked{% endif %}> Square Root using Binary Search
+                        <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Search in 2D Matrix" {%
+                          if "Search in 2D Matrix" in completed_topics %}checked{% endif %}> Search in 2D Matrix <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Ternary Search" {%
+                          if "Ternary Search" in completed_topics %}checked{% endif %}> Ternary Search <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Interpolation Search" {%
+                          if "Interpolation Search" in completed_topics %}checked{% endif %}> Interpolation Search <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Exponential Search" {%
+                          if "Exponential Search" in completed_topics %}checked{% endif %}> Exponential Search <br>
+
+                        <input type="checkbox" class="topic" name="searching_topics" value="Applications of Searching"
+                          {% if "Applications of Searching" in completed_topics %}checked{% endif %}> Applications of
+                        Searching <br>
+                      </div>
+                      <!----------------strees-------------------------------------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-tree"></i>
+                        <h3>Trees</h3>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Introduction to Trees" {%
+                          if "Introduction to Trees" in completed_topics %}checked{% endif %}> Introduction to Trees
+                        <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Terminologies of Trees" {%
+                          if "Terminologies of Trees" in completed_topics %}checked{% endif %}> Terminologies of Trees
+                        <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Binary Tree" {% if "Binary Tree"
+                          in completed_topics %}checked{% endif %}> Binary Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Binary Search Tree (BST)" {%
+                          if "Binary Search Tree (BST)" in completed_topics %}checked{% endif %}> Binary Search Tree
+                        (BST) <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Tree Traversals" {%
+                          if "Tree Traversals" in completed_topics %}checked{% endif %}> Tree Traversals <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Preorder Traversal" {%
+                          if "Preorder Traversal" in completed_topics %}checked{% endif %}> Preorder Traversal <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Inorder Traversal" {%
+                          if "Inorder Traversal" in completed_topics %}checked{% endif %}> Inorder Traversal <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Postorder Traversal" {%
+                          if "Postorder Traversal" in completed_topics %}checked{% endif %}> Postorder Traversal <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Level Order Traversal" {%
+                          if "Level Order Traversal" in completed_topics %}checked{% endif %}> Level Order Traversal
+                        <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Height of a Tree" {%
+                          if "Height of a Tree" in completed_topics %}checked{% endif %}> Height of a Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Depth and Level" {%
+                          if "Depth and Level" in completed_topics %}checked{% endif %}> Depth and Level <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Balanced Binary Tree" {%
+                          if "Balanced Binary Tree" in completed_topics %}checked{% endif %}> Balanced Binary Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Diameter of Binary Tree" {%
+                          if "Diameter of Binary Tree" in completed_topics %}checked{% endif %}> Diameter of Binary Tree
+                        <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Lowest Common Ancestor (LCA)" {%
+                          if "Lowest Common Ancestor (LCA)" in completed_topics %}checked{% endif %}> Lowest Common
+                        Ancestor (LCA) <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Mirror Tree" {% if "Mirror Tree"
+                          in completed_topics %}checked{% endif %}> Mirror Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Symmetric Tree" {%
+                          if "Symmetric Tree" in completed_topics %}checked{% endif %}> Symmetric Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics"
+                          value="Binary Tree Views (Top, Bottom, Left, Right)" {%
+                          if "Binary Tree Views (Top, Bottom, Left, Right)" in completed_topics %}checked{% endif %}>
+                        Binary Tree Views
+                        (Top, Bottom, Left, Right) <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Path Sum Problems" {%
+                          if "Path Sum Problems" in completed_topics %}checked{% endif %}> Path Sum Problems <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Construct Binary Tree" {%
+                          if "Construct Binary Tree" in completed_topics %}checked{% endif %}> Construct Binary Tree
+                        <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics"
+                          value="Serialize and Deserialize Binary Tree" {% if "Serialize and Deserialize Binary Tree" in
+                          completed_topics %}checked{% endif %}> Serialize and Deserialize
+                        Binary Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics"
+                          value="BST Operations (Insert, Delete, Search)" {%
+                          if "BST Operations (Insert, Delete, Search)" in completed_topics %}checked{% endif %}> BST
+                        Operations (Insert,
+                        Delete, Search) <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Validate Binary Search Tree" {%
+                          if "Validate Binary Search Tree" in completed_topics %}checked{% endif %}> Validate Binary
+                        Search Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Kth Smallest/Largest in BST" {%
+                          if "Kth Smallest/Largest in BST" in completed_topics %}checked{% endif %}> Kth
+                        Smallest/Largest in BST <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="AVL Tree" {% if "AVL Tree" in
+                          completed_topics %}checked{% endif %}> AVL Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Red-Black Tree" {%
+                          if "Red-Black Tree" in completed_topics %}checked{% endif %}> Red-Black Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Segment Tree" {%
+                          if "Segment Tree" in completed_topics %}checked{% endif %}> Segment Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics"
+                          value="Fenwick Tree (Binary Indexed Tree)" {% if "Fenwick Tree (Binary Indexed Tree)" in
+                          completed_topics %}checked{% endif %}> Fenwick Tree (Binary Indexed
+                        Tree) <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Trie" {% if "Trie" in
+                          completed_topics %}checked{% endif %}> Trie <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="N-ary Tree" {% if "N-ary Tree" in
+                          completed_topics %}checked{% endif %}> N-ary Tree <br>
+
+                        <input type="checkbox" class="topic" name="tree_topics" value="Applications of Trees" {%
+                          if "Applications of Trees" in completed_topics %}checked{% endif %}> Applications of Trees
+                        <br>
+
+                      </div>
+
+                      <!-------------------------GRaphs----------------------------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <h3>Graphs</h3>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Introduction to Graphs" {%
+                          if "Introduction to Graphs" in completed_topics %}checked{% endif %}> Introduction to Graphs
+                        <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Graph Terminology" {%
+                          if "Graph Terminology" in completed_topics %}checked{% endif %}> Graph Terminology <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Types of Graphs" {%
+                          if "Types of Graphs" in completed_topics %}checked{% endif %}> Types of Graphs <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics"
+                          value="Graph Representation (Adjacency Matrix)" {%
+                          if "Graph Representation (Adjacency Matrix)" in completed_topics %}checked{% endif %}> Graph
+                        Representation
+                        (Adjacency Matrix) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics"
+                          value="Graph Representation (Adjacency List)" {% if "Graph Representation (Adjacency List)" in
+                          completed_topics %}checked{% endif %}> Graph Representation
+                        (Adjacency List) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Breadth First Search (BFS)" {%
+                          if "Breadth First Search (BFS)" in completed_topics %}checked{% endif %}> Breadth First Search
+                        (BFS) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Depth First Search (DFS)" {%
+                          if "Depth First Search (DFS)" in completed_topics %}checked{% endif %}> Depth First Search
+                        (DFS) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Connected Components" {%
+                          if "Connected Components" in completed_topics %}checked{% endif %}> Connected Components <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Cycle Detection" {%
+                          if "Cycle Detection" in completed_topics %}checked{% endif %}> Cycle Detection <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Topological Sort" {%
+                          if "Topological Sort" in completed_topics %}checked{% endif %}> Topological Sort <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Shortest Path Algorithms" {%
+                          if "Shortest Path Algorithms" in completed_topics %}checked{% endif %}> Shortest Path
+                        Algorithms <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Dijkstra's Algorithm" {%
+                          if "Dijkstra's Algorithm" in completed_topics %}checked{% endif %}> Dijkstra's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Bellman-Ford Algorithm" {%
+                          if "Bellman-Ford Algorithm" in completed_topics %}checked{% endif %}> Bellman-Ford Algorithm
+                        <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Floyd-Warshall Algorithm" {%
+                          if "Floyd-Warshall Algorithm" in completed_topics %}checked{% endif %}> Floyd-Warshall
+                        Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Minimum Spanning Tree (MST)" {%
+                          if "Minimum Spanning Tree (MST)" in completed_topics %}checked{% endif %}> Minimum Spanning
+                        Tree (MST) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Prim's Algorithm" {%
+                          if "Prim's Algorithm" in completed_topics %}checked{% endif %}> Prim's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Kruskal's Algorithm" {%
+                          if "Kruskal's Algorithm" in completed_topics %}checked{% endif %}> Kruskal's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Disjoint Set Union (DSU)" {%
+                          if "Disjoint Set Union (DSU)" in completed_topics %}checked{% endif %}> Disjoint Set Union
+                        (DSU) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics"
+                          value="Strongly Connected Components (SCC)" {% if "Strongly Connected Components (SCC)" in
+                          completed_topics %}checked{% endif %}> Strongly Connected Components
+                        (SCC) <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Kosaraju's Algorithm" {%
+                          if "Kosaraju's Algorithm" in completed_topics %}checked{% endif %}> Kosaraju's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Tarjan's Algorithm" {%
+                          if "Tarjan's Algorithm" in completed_topics %}checked{% endif %}> Tarjan's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Bridges and Articulation Points"
+                          {% if "Bridges and Articulation Points" in completed_topics %}checked{% endif %}> Bridges and
+                        Articulation Points
+                        <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Bipartite Graph" {%
+                          if "Bipartite Graph" in completed_topics %}checked{% endif %}> Bipartite Graph <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Graph Coloring" {%
+                          if "Graph Coloring" in completed_topics %}checked{% endif %}> Graph Coloring <br>
+
+                        <input type="checkbox" class="topic" name="graph_topics" value="Applications of Graphs" {%
+                          if "Applications of Graphs" in completed_topics %}checked{% endif %}> Applications of Graphs
+                        <br>
+                      </div>
+
+
+                      <!-------------------------heaps----------------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-mountain"></i>
+                        <h3>Heaps</h3>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Introduction to Heaps" {%
+                          if "Introduction to Heaps" in completed_topics %}checked{% endif %}> Introduction to Heaps
+                        <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Heap Terminology" {%
+                          if "Heap Terminology" in completed_topics %}checked{% endif %}> Heap Terminology <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Types of Heaps" {%
+                          if "Types of Heaps" in completed_topics %}checked{% endif %}> Types of Heaps <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Min Heap" {% if "Min Heap" in
+                          completed_topics %}checked{% endif %}> Min Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Max Heap" {% if "Max Heap" in
+                          completed_topics %}checked{% endif %}> Max Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Complete Binary Tree" {%
+                          if "Complete Binary Tree" in completed_topics %}checked{% endif %}> Complete Binary Tree <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Array Representation of Heap" {%
+                          if "Array Representation of Heap" in completed_topics %}checked{% endif %}> Array
+                        Representation of Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Heap Operations" {%
+                          if "Heap Operations" in completed_topics %}checked{% endif %}> Heap Operations <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Insertion in Heap" {%
+                          if "Insertion in Heap" in completed_topics %}checked{% endif %}> Insertion in Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Deletion from Heap" {%
+                          if "Deletion from Heap" in completed_topics %}checked{% endif %}> Deletion from Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Peek (Find Min/Max)" {%
+                          if "Peek (Find Min/Max)" in completed_topics %}checked{% endif %}> Peek (Find Min/Max) <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Heapify Algorithm" {%
+                          if "Heapify Algorithm" in completed_topics %}checked{% endif %}> Heapify Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Build Heap" {% if "Build Heap" in
+                          completed_topics %}checked{% endif %}> Build Heap <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Heap Sort" {% if "Heap Sort" in
+                          completed_topics %}checked{% endif %}> Heap Sort <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Priority Queue" {%
+                          if "Priority Queue" in completed_topics %}checked{% endif %}> Priority Queue <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Kth Largest Element" {%
+                          if "Kth Largest Element" in completed_topics %}checked{% endif %}> Kth Largest Element <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Kth Smallest Element" {%
+                          if "Kth Smallest Element" in completed_topics %}checked{% endif %}> Kth Smallest Element <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Merge K Sorted Arrays" {%
+                          if "Merge K Sorted Arrays" in completed_topics %}checked{% endif %}> Merge K Sorted Arrays
+                        <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Merge K Sorted Lists" {%
+                          if "Merge K Sorted Lists" in completed_topics %}checked{% endif %}> Merge K Sorted Lists <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Top K Frequent Elements" {%
+                          if "Top K Frequent Elements" in completed_topics %}checked{% endif %}> Top K Frequent Elements
+                        <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Median from Data Stream" {%
+                          if "Median from Data Stream" in completed_topics %}checked{% endif %}> Median from Data Stream
+                        <br>
+
+                        <input type="checkbox" class="topic" name="heap_topics" value="Applications of Heaps" {%
+                          if "Applications of Heaps" in completed_topics %}checked{% endif %}> Applications of Heaps
+                        <br>
+                      </div>
+
+                      <!------------------------dp--------------------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-brain"></i>
+                        <h3>Dynamic Programming</h3>
+
+                        <input type="checkbox" class="topic" name="dp_topics"
+                          value="Introduction to Dynamic Programming" {% if "Introduction to Dynamic Programming" in
+                          completed_topics %}checked{% endif %}> Introduction to Dynamic
+                        Programming <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Overlapping Subproblems" {%
+                          if "Overlapping Subproblems" in completed_topics %}checked{% endif %}> Overlapping Subproblems
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Optimal Substructure" {%
+                          if "Optimal Substructure" in completed_topics %}checked{% endif %}> Optimal Substructure <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Memoization (Top-Down)" {%
+                          if "Memoization (Top-Down)" in completed_topics %}checked{% endif %}> Memoization (Top-Down)
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Tabulation (Bottom-Up)" {%
+                          if "Tabulation (Bottom-Up)" in completed_topics %}checked{% endif %}> Tabulation (Bottom-Up)
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Space Optimization" {%
+                          if "Space Optimization" in completed_topics %}checked{% endif %}> Space Optimization <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="1D Dynamic Programming" {%
+                          if "1D Dynamic Programming" in completed_topics %}checked{% endif %}> 1D Dynamic Programming
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="2D Dynamic Programming" {%
+                          if "2D Dynamic Programming" in completed_topics %}checked{% endif %}> 2D Dynamic Programming
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Fibonacci DP" {% if "Fibonacci DP"
+                          in completed_topics %}checked{% endif %}> Fibonacci DP <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Climbing Stairs" {%
+                          if "Climbing Stairs" in completed_topics %}checked{% endif %}> Climbing Stairs <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="House Robber" {% if "House Robber"
+                          in completed_topics %}checked{% endif %}> House Robber <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Coin Change" {% if "Coin Change" in
+                          completed_topics %}checked{% endif %}> Coin Change <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="0/1 Knapsack" {% if "0/1 Knapsack"
+                          in completed_topics %}checked{% endif %}> 0/1 Knapsack <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Unbounded Knapsack" {%
+                          if "Unbounded Knapsack" in completed_topics %}checked{% endif %}> Unbounded Knapsack <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Subset Sum" {% if "Subset Sum" in
+                          completed_topics %}checked{% endif %}> Subset Sum <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Partition Equal Subset Sum" {%
+                          if "Partition Equal Subset Sum" in completed_topics %}checked{% endif %}> Partition Equal
+                        Subset Sum <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Longest Common Subsequence (LCS)"
+                          {% if "Longest Common Subsequence (LCS)" in completed_topics %}checked{% endif %}> Longest
+                        Common Subsequence (LCS)
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Longest Common Substring" {%
+                          if "Longest Common Substring" in completed_topics %}checked{% endif %}> Longest Common
+                        Substring <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics"
+                          value="Longest Increasing Subsequence (LIS)" {% if "Longest Increasing Subsequence (LIS)" in
+                          completed_topics %}checked{% endif %}> Longest Increasing Subsequence
+                        (LIS) <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Edit Distance" {%
+                          if "Edit Distance" in completed_topics %}checked{% endif %}> Edit Distance <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Matrix Chain Multiplication" {%
+                          if "Matrix Chain" in completed_topics %}checked{% endif %}> Matrix Chain
+                        Multiplication <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Palindrome Partitioning" {%
+                          if "Palindrome Partitioning" in completed_topics %}checked{% endif %}> Palindrome Partitioning
+                        <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="DP on Trees" {% if "DP on Trees" in
+                          completed_topics %}checked{% endif %}> DP on Trees <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="DP on Graphs" {% if "DP on Graphs"
+                          in completed_topics %}checked{% endif %}> DP on Graphs <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Bitmask Dynamic Programming" {%
+                          if "Bitmask Dynamic Programming" in completed_topics %}checked{% endif %}> Bitmask Dynamic
+                        Programming <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="Digit Dynamic Programming" {%
+                          if "Digit Dynamic Programming" in completed_topics %}checked{% endif %}> Digit Dynamic
+                        Programming <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics" value="State Machine Dynamic Programming"
+                          {% if "State Machine Dynamic Programming" in completed_topics %}checked{% endif %}> State
+                        Machine
+                        Dynamic Programming <br>
+
+                        <input type="checkbox" class="topic" name="dp_topics"
+                          value="Dynamic Programming Interview Problems" {% if "Dynamic Programming Interview Problems"
+                          in completed_topics %}checked{% endif %}> Dynamic
+                        Programming Interview Problems <br>
+                      </div>
+
+                      <!--------------------ad topics-------------------------------------->
+                      <div class="topic-card">
+                        <i class="fa-solid fa-star"></i>
+                        <h3>Advanced Topics</h3>
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Bit Manipulation" {%
+                          if "Bit Manipulation" in completed_topics %}checked{% endif %}> Bit Manipulation <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Greedy Algorithms" {%
+                          if "Greedy Algorithums" in completed_topics %}checked{% endif %}> Greedy Algorithms <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Backtracking" {%
+                          if "Backtracking" in completed_topics %}checked{% endif %}> Backtracking <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Divide and Conquer" {%
+                          if "Divide and Conquer" in completed_topics %}checked{% endif %}> Divide and Conquer
+                        <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Trie" {% if "Trie" in
+                          completed_topics %}checked{% endif %}> Trie <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Segment Tree" {%
+                          if "Segment Tree" in completed_topics %}checked{% endif %}> Segment Tree <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics"
+                          value="Fenwick Tree (Binary Indexed Tree)" {% if " Fenwick Tree (Binary Indexed Tree)" in
+                          completed_topics %}checked{% endif %}>
+                        Fenwick Tree (Binary Indexed Tree) <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics"
+                          value="Disjoint Set Union (Union-Find)" {% if "Disjoint Set Union (Union-Find)" in
+                          completed_topics %}checked{% endif %}> Disjoint
+                        Set Union (Union-Find) <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Sparse Table" {%
+                          if "Sparse Table" in completed_topics %}checked{% endif %}> Sparse Table <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Binary Lifting" {%
+                          if "Binary Lifting" in completed_topics %}checked{% endif %}> Binary Lifting <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Heavy Light Decomposition" {%
+                          if "Heavy Light Decomposition" in completed_topics %}checked{% endif %}> Heavy Light
+                        Decomposition <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Mo's Algorithm" {%
+                          if "Mo's Algorithm" in completed_topics %}checked{% endif %}> Mo's Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="String Hashing" {%
+                          if "String Hashing" in completed_topics %}checked{% endif %}> String Hashing <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="KMP Algorithm" {%
+                          if "KMP Algorithm" in completed_topics %}checked{% endif %}> Knuth-Morris-Pratt (KMP)
+                        <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Rabin-Karp Algorithm" {%
+                          if "Rabin-Karp Algorithm" in completed_topics %}checked{% endif %}> Rabin-Karp Algorithm
+                        <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Z Algorithm" {%
+                          if "Z Algorithm" in completed_topics %}checked{% endif %}> Z Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Aho-Corasick Algorithm" {%
+                          if "Aho-Corasick Algorithm" in completed_topics %}checked{% endif %}> Aho-Corasick
+                        Algorithm <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Network Flow" {%
+                          if "Network Flow" in completed_topics %}checked{% endif %}> Network Flow <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Maximum Bipartite Matching"
+                          {% if "Maximum Bipartite Matching" in completed_topics %}checked{% endif %}> Maximum
+                        Bipartite Matching <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Computational Geometry" {%
+                          if "Computational Geometry" in completed_topics %}checked{% endif %}> Computational
+                        Geometry <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Number Theory" {%
+                          if "Number Theory" in completed_topics %}checked{% endif %}> Number Theory <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Game Theory" {%
+                          if "Game Theory" in completed_topics %}checked{% endif %}> Game Theory <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Randomized Algorithms" {%
+                          if "Randomized Algorithms" in completed_topics %}checked{% endif %}> Randomized
+                        Algorithms <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics" value="Advanced Dynamic Programming"
+                          {% if "Advanced Dynamic Programming" in completed_topics %}checked{% endif %}> Advanced
+                        Dynamic Programming <br>
+
+                        <input type="checkbox" class="topic" name="advanced_topics"
+                          value="Competitive Programming Techniques" {% if "Competitive Programming Techniques" in
+                          completed_topics %}checked{% endif %}>
+                        Competitive Programming Techniques <br>
+                      </div>
+
+      </section>
+
+    </main>
+
+  </div>
+  <script>
+
+    document.querySelectorAll(".topic").forEach((checkbox) => {
+
+      checkbox.addEventListener("change", function () {
+
+        fetch("/problem/save_topic", {
+
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+
+            topic: this.value,
+
+            checked: this.checked
+
+          })
+
+        });
+
+      });
+
+    });
+
+  </script>
+
 </body>
+
 </html>

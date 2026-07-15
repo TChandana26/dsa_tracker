@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, Response , session
+from flask import Blueprint, render_template, Response , session , request , url_for , redirect
 from collections import Counter
 from io import BytesIO
 import matplotlib
@@ -10,9 +10,14 @@ analytics_bp = Blueprint("analytics", __name__)
 
 @analytics_bp.route("/dashboard")
 def dashboard():
-    problems = list(problem_col.find())
+    if "user" not in session:
+        return redirect(url_for("user.login"))
 
-    recent = list(problem_col.find().sort("_id", -1).limit(5))
+    username = session["user"]
+
+    problems = list(problem_col.find({"username": username}))
+
+    recent = list(problem_col.find({"username": username}).sort("_id", -1).limit(5))
     username = session.get("user")
 
     total = len(problems)
@@ -31,7 +36,10 @@ def dashboard():
 @analytics_bp.route("/pie_chart")
 def pie_chart():
 
-    problems = list(problem_col.find())
+    if "user" not in session:
+        return redirect(url_for("user.login"))
+
+    problems = list(problem_col.find({"username": session["user"]}))
 
     difficulty = Counter([p["difficulty"] for p in problems])
 
@@ -55,3 +63,4 @@ def pie_chart():
     img.seek(0)
 
     return Response(img.getvalue(), mimetype="image/png")
+

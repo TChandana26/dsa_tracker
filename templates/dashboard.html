@@ -22,24 +22,28 @@
 
       <div class="logo">
         <i class="fa-solid fa-code"></i>
-        <h2>DSA Tracker</h2>
+        <h2>DSA_TRACKER</h2>
       </div>
 
       <ul>
 
         <li class="active">
+          <a href="/dashboard">
           <i class="fa-solid fa-house"></i>
           Dashboard
+          </a>
         </li>
 
         <li>
+          <a href="/problem/topic">
           <i class="fa-solid fa-book"></i>
-          Topics
+          Topics</a>
         </li>
 
         <li>
+          <a href="/problem/view">
           <i class="fa-solid fa-list-check"></i>
-          Problems
+          Problems</a>
         </li>
       </ul>
 
@@ -62,49 +66,50 @@
 
       <!-- ================= TOPBAR ================= -->
 
-      
+
 
       <!-- ================= WELCOME ================= -->
-       <header class="topbar">
-        
-      <section class="welcome">
+      <header class="topbar">
 
-        <div>
+        <section class="welcome">
 
-          <h1>
+          <div>
 
-            Welcome, {{ username }}
-            👋
+            <h1>
 
-          </h1>
+              Welcome, {{ username }}
+              👋
 
-          <p>
+            </h1>
 
-            Track your coding journey and stay consistent.
+            <p>
 
-          </p>
+              Track your coding journey and stay consistent.
 
-        </div>
+            </p>
 
-      </section>
+          </div>
+
+        </section>
 
 
         <div class="right">
 
-         
+
 
           <div class="profile">
 
             <img src="https://ui-avatars.com/api/?name={{ username }}&background=2563eb&color=fff" alt="">
+            <a href="/user/logout">
 
-            <span>{{ username }}</span>
-
+            <span>{{ username }}<br> Logout </span>
+            </a>
           </div>
 
-        
 
 
-      </div>
+
+        </div>
       </header>
 
       <!-- ================= CARDS ================= -->
@@ -249,7 +254,7 @@
 
           </div>
 
-          
+
 
         </div>
         <!-- ================= RIGHT PANEL ================= -->

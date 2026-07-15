@@ -1,0 +1,306 @@
+/* ===========================
+   Google Font
+=========================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    color:#222;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===========================
+Dashboard Layout
+=========================== */
+
+.dashboard{
+    display:flex;
+    min-height:100vh;
+}
+
+/* ===========================
+Sidebar
+=========================== */
+
+.sidebar{
+    width:250px;
+    background:#1f2937;
+    color:#fff;
+    padding:25px 20px;
+    position:fixed;
+    left:0;
+    top:0;
+    bottom:0;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:22px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    font-size:22px;
+    font-weight: 700;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar li{
+    margin-bottom:12px;
+}
+
+.sidebar li a{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    text-decoration:none;
+    color:#fff;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:.3s;
+}
+
+.sidebar li:hover a{
+    background:#2563eb;
+}
+
+.sidebar .active a{
+    background:#2563eb;
+}
+
+.sidebar i{
+    width:22px;
+}
+
+/* ===========================
+Main
+=========================== */
+
+.main-content{
+    margin-left:250px;
+    width:calc(100% - 250px);
+    padding:35px;
+}
+
+/* ===========================
+Top Bar
+=========================== */
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.topbar h1{
+    font-size:34px;
+}
+
+.search{
+    width:320px;
+    padding:12px 18px;
+    border:none;
+    outline:none;
+    border-radius:12px;
+    background:white;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+/* ===========================
+Topic Grid
+=========================== */
+
+.topic-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+/* ===========================
+Cards
+=========================== */
+
+.topic-card{
+    background:white;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.topic-card:hover{
+    transform:translateY(-8px);
+}
+
+.topic-card i{
+    font-size:42px;
+    color:#2563eb;
+    margin-bottom:15px;
+}
+
+.topic-card h3{
+    margin-bottom:12px;
+    font-size:24px;
+}
+
+.topic-card p{
+    color:#666;
+    line-height:1.6;
+    margin-bottom:18px;
+    min-height:65px;
+}
+
+/* ===========================
+Progress Bar
+=========================== */
+
+.progress{
+    width:100%;
+    height:10px;
+    background:#e5e7eb;
+    border-radius:50px;
+    overflow:hidden;
+    margin-bottom:18px;
+}
+
+.progress div{
+    height:100%;
+    background:linear-gradient(90deg,#2563eb,#3b82f6);
+    border-radius:50px;
+}
+
+/* ===========================
+Buttons
+=========================== */
+
+button{
+    width:100%;
+    border:none;
+    padding:12px;
+    border-radius:10px;
+    background:#2563eb;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+/* ===========================
+Responsive
+=========================== */
+
+@media(max-width:900px){
+
+.sidebar{
+    width:220px;
+}
+
+.main-content{
+    margin-left:220px;
+}
+
+}
+
+@media(max-width:768px){
+
+.dashboard{
+    flex-direction:column;
+}
+
+.sidebar{
+    position:relative;
+    width:100%;
+}
+
+.main-content{
+    margin-left:0;
+    width:100%;
+    padding:20px;
+}
+
+.topbar{
+    flex-direction:column;
+    gap:20px;
+}
+
+.search{
+    width:100%;
+}
+
+.topic-grid{
+    grid-template-columns:1fr;
+}
+
+}
+
+.topic {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 18px;
+    height: 18px;
+    margin-right: 8px;
+    cursor: pointer;
+
+    border: 2px solid #080710;
+    border-radius: 4px;
+    background: #fff;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.25s ease;
+    vertical-align: middle;
+}
+
+/* Checked State */
+.topic:checked {
+    background: #4f46e5;
+    border-color: #4f46e5;
+}
+
+/* Tick Mark */
+.topic:checked::after {
+    content: "✓";
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* Hover */
+.topic:hover {
+    border-color: #0f0fbd;
+    transform: scale(1.08);
+}
+
+/* Click Effect */
+.topic:active {
+    transform: scale(0.95);
+}

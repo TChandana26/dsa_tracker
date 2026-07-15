@@ -31,12 +31,14 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = generate_password_hash(request.form['password'])
-        email = request.form['email']
-        user_col.insert_one({'username' : username , 'password' : password , 'email' : email})
-        print(username,password,email)
+        user_col.insert_one({'username' : username , 'password' : password})
+        print(username,password)
         return redirect(url_for('user.login'))
     return render_template('register.html')
 
 
-
+@user_bp.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("user.login"))
 

@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(#f8f8fc, #5d5d5e);
+    background: linear-gradient(#f8f8fc, #292961);
     height: 100vh;                  /* full viewport height */
     display: flex;                  /* enable flexbox */
     flex-direction: column;         /* stack title + form vertically */

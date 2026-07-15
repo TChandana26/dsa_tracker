@@ -6,19 +6,20 @@
   <title>Centered Form</title>
   <style>
     body {
-      margin: 0;
-      height: 90vh;
+      background: linear-gradient(#f8f8fc, #292961);
+      height: 100vh;
       /* full viewport height */
-      display: grid;
+      display: flex;
+      /* enable flexbox */
+      flex-direction: column;
+      /* stack title + form vertically */
       justify-content: center;
-      /* horizontal center */
+      /* center vertically */
       align-items: center;
-      /* vertical center */
-      background-color: #626164;
     }
 
     .form-container {
-      background: rgb(249, 249, 251);
+      background: rgb(242, 242, 244);
       padding: 40px;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(240, 237, 237, 0.1);
@@ -70,11 +71,39 @@
       margin-bottom: 30px;
       text-align: center;
     }
+
+    .logo {
+
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-bottom: 35px;
+    }
+
+    .logo i {
+
+      font-size: 32px;
+      color: #090a0d;
+
+    }
+
+    .logo h2 {
+
+      font-size: 50px;
+      font-weight: 700;
+
+    }
   </style>
 </head>
 
 <body>
-  
+
+  <div class="logo">
+    <i class="fa-solid fa-code"></i>
+    <h2>DSA_TRACKER</h2>
+  </div>
+
   <div class="form-container">
     <form method="POST" action="/user/login">
       <h2>Login</h2>
@@ -82,7 +111,7 @@
       <input type="text" name="username" placeholder="Enter your full name" required>
 
       <label>Password:</label>
-      <input type="password" name="password"   placeholder="Enter valid Password" required>
+      <input type="password" name="password" placeholder="Enter valid Password" required>
 
       <button type="submit">Submit</button>
       New User: <a href="/user/register"><i>register</i></a>
