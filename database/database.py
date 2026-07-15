@@ -1,6 +1,10 @@
 from pymongo import MongoClient
+import os
+from dotenv import load_dotenv
 
-client = MongoClient("mongodb://localhost:27017/")
+load_dotenv()
+
+client = MongoClient(os.getenv("MONGO_URI"))
 
 user_db = client['user_db']
 problem_db = client['problem_db']
