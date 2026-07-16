@@ -26,24 +26,24 @@
       </div>
 
       <ul>
-
+        <div class="hamburger">☰</div>
         <li class="active">
           <a href="/dashboard">
-          <i class="fa-solid fa-house"></i>
-          Dashboard
+            <i class="fa-solid fa-house"></i>
+            Dashboard
           </a>
         </li>
 
         <li>
           <a href="/problem/topic">
-          <i class="fa-solid fa-book"></i>
-          Topics</a>
+            <i class="fa-solid fa-book"></i>
+            Topics</a>
         </li>
 
         <li>
           <a href="/problem/view">
-          <i class="fa-solid fa-list-check"></i>
-          Problems</a>
+            <i class="fa-solid fa-list-check"></i>
+            Problems</a>
         </li>
       </ul>
 
@@ -102,7 +102,7 @@
             <img src="https://ui-avatars.com/api/?name={{ username }}&background=2563eb&color=fff" alt="">
             <a href="/user/logout">
 
-            <span>{{ username }}<br> Logout </span>
+              <span>{{ username }}<br> Logout </span>
             </a>
           </div>
 
@@ -278,6 +278,14 @@
     </main>
 
   </div>
+  <script>
+    document.querySelector(".hamburger").addEventListener("click", () => {
+      document.querySelector(".sidebar").classList.toggle("active");
+    });
+
+  </script>
+
+
 
 </body>
 

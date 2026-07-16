@@ -33,7 +33,8 @@ def register():
         password = generate_password_hash(request.form['password'])
 
         print("Client object:", user_col.database.client)
-
+        print("MONGO_URI:", os.getenv("MONGO_URI"))
+        
         user_col.insert_one({'username' : username , 'password' : password})
         print(username,password)
         return redirect(url_for('user.login'))
