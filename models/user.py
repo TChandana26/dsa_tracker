@@ -31,6 +31,9 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = generate_password_hash(request.form['password'])
+
+        print("Client object:", user_col.database.client)
+
         user_col.insert_one({'username' : username , 'password' : password})
         print(username,password)
         return redirect(url_for('user.login'))

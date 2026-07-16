@@ -4,7 +4,17 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-client = MongoClient(os.getenv("MONGO_URI"))
+client = MongoClient(os.getenv("MONGO_URI"),serverSelectionTimeoutMS=5000)
+
+print("MONGO_URI:", os.getenv("MONGO_URI"))
+
+
+try:
+    client.admin.command("ping")
+    print("✅ Connected to MongoDB Atlas!")
+except Exception as e:
+    print("❌", e)
+
 
 user_db = client['user_db']
 problem_db = client['problem_db']
