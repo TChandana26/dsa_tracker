@@ -14,8 +14,11 @@
   <div class="dashboard">
 
     <!-- Sidebar -->
+    <div class="menu-btn" id="menu-btn">
+      <i class="fas fa-bars"></i>
+    </div>
 
-    <aside class="sidebar">
+    <aside class="sidebar" id="sidebar">
 
       <div class="logo">
         <i class="fa-solid fa-code"></i>
@@ -46,7 +49,7 @@
         </li>
 
       </ul>
-      
+
 
     </aside>
 
@@ -130,8 +133,8 @@
             <div class="topic-card">
               <i class="fa-solid fa-clock"></i>
               <h3>Complexity Analysis</h3>
-              <input type="checkbox" class="topic"  name="complexity_topics" value="Introduction to Complexity Analysis" {%
-                if "Introduction to Complexity Analysis " in completed_topics %}checked{% endif %}> Introduction
+              <input type="checkbox" class="topic" name="complexity_topics" value="Introduction to Complexity Analysis"
+                {% if "Introduction to Complexity Analysis " in completed_topics %}checked{% endif %}> Introduction
               to
               Complexity Analysis <br>
 
@@ -1369,35 +1372,49 @@
 
   </div>
   <script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    // ================= Save Topics =================
     document.querySelectorAll(".topic").forEach((checkbox) => {
+        checkbox.addEventListener("change", function () {
 
-      checkbox.addEventListener("change", function () {
-
-        fetch("/problem/save_topic", {
-
-          method: "POST",
-
-          headers: {
-            "Content-Type": "application/json"
-          },
-
-          body: JSON.stringify({
-
-            topic: this.value,
-
-            checked: this.checked
-
-          })
+            fetch("/problem/save_topic", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    topic: this.value,
+                    checked: this.checked
+                })
+            });
 
         });
-
-      });
-
     });
 
-  </script>
+    // ================= Mobile Menu =================
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
 
+    if (menuBtn && sidebar) {
+
+        menuBtn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            sidebar.classList.toggle("active");
+        });
+
+        sidebar.addEventListener("click", function (e) {
+            e.stopPropagation();
+        });
+
+        document.addEventListener("click", function () {
+            sidebar.classList.remove("active");
+        });
+
+    }
+
+});
+</script>
 </body>
 
 </html>

@@ -1,7 +1,9 @@
 from database.database import user_col
+import os
 from flask import Blueprint, render_template , request , url_for , redirect , session , flash
 from werkzeug.security import generate_password_hash, check_password_hash
 print("LOADED USER.PY")
+
 
 user_bp = Blueprint('user' , __name__ , url_prefix = '/user')
 

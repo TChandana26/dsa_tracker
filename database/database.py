@@ -4,9 +4,11 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+print("MONGO_URI:", os.getenv("MONGO_URI"))
+
 client = MongoClient(os.getenv("MONGO_URI"),serverSelectionTimeoutMS=5000)
 
-print("MONGO_URI:", os.getenv("MONGO_URI"))
+
 
 
 try:
