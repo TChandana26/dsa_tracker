@@ -67,35 +67,43 @@ A **Flask + MongoDB** based web application that helps students organize, track,
 # 📂 Project Structure
 
 ```
-dsa_tracker/
+DSA_TRACKER/
 │
-├── app.py
-├── config.py
-├── requirements.txt
-├── .env
+├── app.py                     # Flask application entry point
+├── .env                       # Environment variables
+├── .gitignore                 # Git ignored files
+├── LICENSE                    # License file
+├── Procfile                   # Deployment configuration
+├── README.md                  # Project documentation
 │
-├── database/
-│   ├── database.py
-│
-├── routes/
+├── models/                    # Application routes & logic
 │   ├── user.py
-│   ├── problems.py
+│   ├── problem.py
 │   └── analytics.py
 │
-├── templates/
+├── templates/                 # HTML templates
 │   ├── dashboard.html
 │   ├── login.html
 │   ├── register.html
+│   ├── topic.html
 │   ├── problem.html
-│   ├── view_problem.html
-│   
-├── static/
-│   ├── style.css
-|   |__
-|   static/style1.css static/style2.css static/style3.css static/topic.css static/view.css
+│   └── view_problem.html
 │
-└── README.md
-```
+├── static/                    # Static assets
+│   ├── style.css
+│   ├── style1.css
+│   ├── style3.css
+│   ├── topic.css
+│   └── view.css
+│
+├── screenshots/               # Project screenshots
+│   ├── dashboard_page.png
+│   ├── user_login.png
+│   ├── user_register.png
+│   ├── topics.png
+│   └── problem_view.png
+│
+└── venv/                      # Virtual environment (ignored in Git)
 
 ---
 
