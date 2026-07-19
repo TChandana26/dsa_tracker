@@ -7,13 +7,13 @@
 
   <link rel="stylesheet" href="{{ url_for('static', filename='topic.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
 
   <div class="dashboard">
 
-    <!-- Sidebar -->
     <div class="menu-btn" id="menu-btn">
       <i class="fas fa-bars"></i>
     </div>
@@ -1372,49 +1372,50 @@
 
   </div>
   <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
 
-    // ================= Save Topics =================
-    document.querySelectorAll(".topic").forEach((checkbox) => {
+      // ================= Save Topics =================
+      document.querySelectorAll(".topic").forEach((checkbox) => {
         checkbox.addEventListener("change", function () {
 
-            fetch("/problem/save_topic", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    topic: this.value,
-                    checked: this.checked
-                })
-            });
+          fetch("/problem/save_topic", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              topic: this.value,
+              checked: this.checked
+            })
+          });
 
         });
+      });
+
     });
+  </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    // ================= Mobile Menu =================
-    const menuBtn = document.getElementById("menu-btn");
-    const sidebar = document.getElementById("sidebar");
+      const menuBtn = document.getElementById("menu-btn");
+      const sidebar = document.getElementById("sidebar");
 
-    if (menuBtn && sidebar) {
+      menuBtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        sidebar.classList.toggle("active");
+        console.log(sidebar.className);
+      });
 
-        menuBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            sidebar.classList.toggle("active");
-        });
+      sidebar.addEventListener("click", function (e) {
+        e.stopPropagation();
+      });
 
-        sidebar.addEventListener("click", function (e) {
-            e.stopPropagation();
-        });
+      document.addEventListener("click", function () {
+        sidebar.classList.remove("active");
+      });
 
-        document.addEventListener("click", function () {
-            sidebar.classList.remove("active");
-        });
-
-    }
-
-});
-</script>
+    });
+  </script>
 </body>
 
 </html>
