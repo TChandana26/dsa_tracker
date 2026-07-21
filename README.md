@@ -182,15 +182,23 @@ http://127.0.0.1:5000
 Example:
 
 ```
-Home Page
+Dashboard Page
+![Dashboard](screenshots/dashboard page.png)
 
-Dashboard
+problem view
+![problem_view](screenshots/problem_view.png)
 
 Add Problem
+![AI Tutor](screenshots/addproblem.png)
 
-Analytics
+topics
+![topics](topics.png)
 
-Notes
+login
+![login](login.png)
+
+register
+![register](register.png)
 ```
 
 ---

@@ -117,6 +117,16 @@
       New User: <a href="/user/register"><i>register</i></a>
     </form>
   </div>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 </body>
 
 </html>
